@@ -132,7 +132,7 @@ const Cart: React.FC = () => {
                 }} 
                 onClick={handleBrowse}
                 >
-                  Browse our products
+                  {getTranslation(language, 'browse our products')}
                 </Button>
             </Container>
         )}
