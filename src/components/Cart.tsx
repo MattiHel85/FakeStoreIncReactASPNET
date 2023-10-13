@@ -123,8 +123,8 @@ const Cart: React.FC = () => {
               justifyContent: 'center'
               }}
             >
-              <Typography variant='h5' sx={{marginTop: '1em', textAlign: 'center'}}>Cart Empty</Typography>
-              <Typography variant='body1' sx={{marginTop: '1em', textAlign: 'center'}}>You've not added anything yet!</Typography>
+              <Typography variant='h5' sx={{marginTop: '1em', textAlign: 'center'}}>{getTranslation(language, 'Cart Empty')}</Typography>
+              <Typography variant='body1' sx={{marginTop: '1em', textAlign: 'center'}}>{getTranslation(language, "You've not added anything yet")}!</Typography>
                 <Button sx={{
                   width: {xs:'80%', md: '100%'},
                   margin: 'auto',
