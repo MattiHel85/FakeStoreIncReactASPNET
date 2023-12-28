@@ -109,7 +109,7 @@ function TopAppBar() {
               flexGrow: 1, // Expand to fill available space
             }}
           >
-            FakeShop Inc
+            FakeStore Inc
           </Typography>
 
           {/* Language switch*/}

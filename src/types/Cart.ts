@@ -1,7 +1,9 @@
+import {Guid} from 'guid-typescript'
+
 export interface CartItem {
-    id: number;
+    id: Guid;
     name: string;
-    price: number;
+    price: string;
     quantity: number;
 }
 

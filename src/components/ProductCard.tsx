@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Guid } from "guid-typescript";
 import { ProductCardProps } from "../types/Product";
 
 import { Card, CardContent, CardMedia, Typography, Button, CardActions } from '@mui/material';
@@ -12,7 +13,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, items, dispatch, onA
     const { language } = useLanguage()
     const navigate = useNavigate();
     const id = product?.id;
-    const firstImage = product?.images?.[0];
+    const firstImage = product?.image?.[0];
 
     const navigateToProduct = () => {
         navigate(`/products/${id}`)
@@ -24,7 +25,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, items, dispatch, onA
 
     return(
         <>
-            <Card className={styles.productCard} key={product.id}>
+            <Card 
+                className={styles.productCard} 
+                // key={product.id}
+            >
                 <CardMedia 
                     onClick={navigateToProduct}
                     sx={{
@@ -35,13 +39,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, items, dispatch, onA
                 />
                 <CardContent>
                     <Typography variant="h5" sx={{marginBottom: '1.5em'}}>
-                        {product.title}
+                        {product.productName}
                     </Typography>
                     <Typography sx={{marginBottom: '1em'}}>
                         {product.description}
                     </Typography>
                     <Typography variant="body1" sx={{marginBottom: '1.5em'}}>
-                    {getTranslation(language, 'Category')}: {product.category.name}
+                    {/* {getTranslation(language, 'Category')}: {product.categoryId} */}
                     </Typography>
                 </CardContent>
                 <CardActions

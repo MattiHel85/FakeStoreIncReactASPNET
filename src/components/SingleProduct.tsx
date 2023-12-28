@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Guid } from "guid-typescript";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -7,13 +8,13 @@ import { AppDispatch } from '../redux/store';
 import { fetchProductById } from "../redux/slices/productSlice";
 import { fetchProductOfTheMonthById } from "../redux/slices/productOfTheMonthSlice";
 import { Product } from "../types/Product";
-import UpdateProduct from "./UpdateProduct";
+// import UpdateProduct from "./UpdateProduct";
 import { ImageList, Typography, Container } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { deleteProduct } from "../redux/slices/productSlice";
 import styles from '../styles/styles.module.css';
-import debouncedHandleAddToCart from '../utils/cartHelpers';
+// import debouncedHandleAddToCart from '../utils/cartHelpers';
 import Header from "./Header";
 
 import { useLanguage } from '../contextAPI/LanguageContext';
@@ -55,16 +56,16 @@ const SingleProduct: React.FC = () => {
         !openProductUpdateForm && setOpenProductUpdateForm(true)
     }
 
-    const handleAddToCart = () => {
-        if (product) {
-            debouncedHandleAddToCart(product, items, dispatch);
-        }
-    };
+    // const handleAddToCart = () => {
+    //     if (product) {
+    //         debouncedHandleAddToCart(product, items, dispatch);
+    //     }
+    // };
 
-    const handleDelete = () => {
-        dispatch(deleteProduct(Number(product?.id)));
-        navigate('/products')
-    }
+    // const handleDelete = () => {
+    //     dispatch(deleteProduct(new Guid(product?.id)));
+    //     navigate('/products')
+    // }
 
     const handleSetProductOfTheMonth = (productId: number) => {
         dispatch(fetchProductOfTheMonthById(productId))
@@ -85,7 +86,7 @@ const SingleProduct: React.FC = () => {
 
     return (
         <>
-            <Typography sx={{ textAlign: 'center', margin: '50px'}} variant="h4">{product.title}</Typography>
+            <Typography sx={{ textAlign: 'center', margin: '50px'}} variant="h4">{product.productName}</Typography>
             <Container
                 sx={{
                     display: 'flex',
@@ -93,9 +94,9 @@ const SingleProduct: React.FC = () => {
                     marginBottom: '50px'
                 }}
             >
-                <ImageList sx={{  minWidth: 250 }} cols={product.images.length} rowHeight={164}>
+                <ImageList sx={{  minWidth: 250 }} cols={product.image.length} rowHeight={164}>
 
-                    {product.images.map((item: string, index: number ) => (
+                    {product.image.map((item: string, index: number ) => (
                             <img 
                                 key={index}
                                 className={styles.productImages}
@@ -123,12 +124,12 @@ const SingleProduct: React.FC = () => {
                     }}
                     variant="h4">€{product.price}
                 </Typography>
-                <Typography
+                {/* <Typography
                     sx={{
                         marginBottom: '15px'
                     }}
-                    variant="h6">{getTranslation(language, 'Category')}: {product.category.name}
-                </Typography>
+                    variant="h6">{getTranslation(language, 'Category')}: {product.categoryId}
+                </Typography> */}
                 <Typography
                     sx={{
                         marginBottom: '15px'
@@ -157,7 +158,7 @@ const SingleProduct: React.FC = () => {
                             {getTranslation(language, 'Admin')}
                     </Button>}
                     <Button 
-                        onClick={handleAddToCart}
+                        // onClick={handleAddToCart}
                         className={styles.primaryButton}
                     >
                         {getTranslation(language, 'Add to cart')}
@@ -197,7 +198,7 @@ const SingleProduct: React.FC = () => {
                                             {getTranslation(language, "don't delete")}
                                         </Button>
                                         <Button 
-                                            onClick={handleDelete} 
+                                            // onClick={handleDelete} 
                                             className={styles.cardDeleteButton}
                                         >
                                             {getTranslation(language, 'yes, delete')}
@@ -222,7 +223,7 @@ const SingleProduct: React.FC = () => {
                     }
             </Container>
             { 
-                openProductUpdateForm ?  <UpdateProduct product={product} /> : <></>            
+                // openProductUpdateForm ?  <UpdateProduct product={product} /> : <></>            
             }  
         </>
     );

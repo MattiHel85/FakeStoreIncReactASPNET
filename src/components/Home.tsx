@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { AppDispatch } from '../redux/store';
 import { removeProductOfTheMonth } from '../redux/slices/productOfTheMonthSlice';
-import debouncedHandleAddToCart from '../utils/cartHelpers';
+// import debouncedHandleAddToCart from '../utils/cartHelpers';
 import { RootState } from '../redux/slices/rootSlice';
 import { Typography, Container, Box, Button } from "@mui/material"
 import Header from './Header';
@@ -20,10 +20,10 @@ const Home: React.FC = ( ) => {
   const user = useSelector((state: RootState) => state.auth.user)
   
 
-  const handleAddToCart = () => {
-    product && debouncedHandleAddToCart(product, items, dispatch)
-    console.log('Added to cart: ', product)
-  };
+  // const handleAddToCart = () => {
+  //   product && debouncedHandleAddToCart(product, items, dispatch)
+  //   console.log('Added to cart: ', product)
+  // };
 
   const handleRemoveProductOfTheMonth = () => {
     dispatch(removeProductOfTheMonth());
@@ -39,14 +39,14 @@ const Home: React.FC = ( ) => {
                 <Box className={styles.potmBox} >
                   <img 
                     className={styles.potmImage} 
-                    src={product?.images?.[0]} 
+                    src={product?.image?.[0]} 
                     alt={``} 
                   />
                   <Box
                     className={styles.potmBoxOne}
                   >
                     <Box className={styles.potmBoxTwo}>
-                    <Typography className={styles.potmTextFieldTwo}>{product?.title}</Typography>
+                    <Typography className={styles.potmTextFieldTwo}>{product?.productName}</Typography>
                       <Typography className={styles.potmTextFieldTwo}>€{product?.price}</Typography>
                     </Box>
                     <Box className={styles.potmBoxThree}>
@@ -57,7 +57,7 @@ const Home: React.FC = ( ) => {
                           <Button className={styles.potmSecondaryButton} onClick={handleRemoveProductOfTheMonth}> {getTranslation(language, 'Remove as P.O.M')} </Button> :
                           <></>
                         }
-                        <Button className={styles.potmPrimaryButton} onClick={handleAddToCart}>{getTranslation(language, 'Add to cart')}</Button>
+                        {/* <Button className={styles.potmPrimaryButton} onClick={handleAddToCart}>{getTranslation(language, 'Add to cart')}</Button> */}
                       </Box>
                     </Box>
                   </Box>

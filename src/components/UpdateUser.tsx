@@ -14,24 +14,28 @@ import { getTranslation } from '../contextAPI/translations/TranslationService';
 const UpdateUser: React.FC<UpdateUserProps> = ({ user, setUser }) => {
   const {language} = useLanguage();
   const [userData, setUserData] = useState<User>({
-    id: 0,
-    name: '',
-    email: '',
-    password: '',
-    avatar: '',
-    role: 'customer',
-  });
+    id: undefined,
+    Role: '',  // Corrected property name from FirstName to Role
+    FirstName: '',
+    LastName: '',
+    Email: '',
+    Password: '',
+    PhoneNumber: '',
+    Addresses: [],
+});
+
 
   useEffect(() => {
     if (user) {
       setUserData(prevData => ({
         ...prevData,
-        id: user.id || 0,
-        name: user.name || '',
-        email: user.email || '',
-        password: user.password || '',
-        avatar: user.avatar || '',
-        role: user.role || 'customer',
+        id: user.id || undefined,
+        FirstName: user.FirstName || '',
+        LastName: user.LastName || '',
+        Email: user.Email || '',
+        Password: user.Password || '',
+        Role: user.Role || 'Customer',
+        Addresses: user.Addresses || [],
       }));
     }
   }, [user]);
@@ -50,7 +54,7 @@ const UpdateUser: React.FC<UpdateUserProps> = ({ user, setUser }) => {
     if (name === 'adminCode' && value === adminCode) {
       setUserData(prevData => ({
         ...prevData,
-        role: 'admin',
+        Role: 'Admin',
       }));
     }
   };
@@ -71,30 +75,30 @@ const UpdateUser: React.FC<UpdateUserProps> = ({ user, setUser }) => {
       <form onSubmit={handleUpdateUser} className={styles.signInForm}>
         <TextField
           label={getTranslation(language, 'Name')}
-          name="name"
-          value={userData.name}
+          name="FirstName"
+          value={userData.FirstName}
+          onChange={handleInputChange}
+          className={styles.textField}
+        />
+        <TextField
+          label={getTranslation(language, 'Name')}
+          name="LastName"
+          value={userData.LastName}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
           label={getTranslation(language, 'Email')}
-          name="email"
-          value={userData.email}
+          name="Email"
+          value={userData.Email}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
           label={getTranslation(language, 'Password')}
           type="password"
-          name="password"
-          value={userData.password}
-          onChange={handleInputChange}
-          className={styles.textField}
-        />
-        <TextField
-          label={getTranslation(language, 'Avatar URL')}
-          name="avatar"
-          value={userData.avatar}
+          name="Password"
+          value={userData.Password}
           onChange={handleInputChange}
           className={styles.textField}
         />
@@ -105,6 +109,31 @@ const UpdateUser: React.FC<UpdateUserProps> = ({ user, setUser }) => {
           onChange={handleInputChange}
           className={styles.textField}
         />
+        {userData.Addresses.map((address, index) => (
+          <div key={index}>
+            <TextField
+              label={getTranslation(language, 'House Number')}
+              name={`Addresses[${index}].HouseNumber`}
+              value={address.HouseNumber}
+              onChange={handleInputChange}
+              className={styles.textField}
+            />
+            <TextField
+              label={getTranslation(language, 'Street')}
+              name={`Addresses[${index}].Street`}
+              value={address.Street || ''}
+              onChange={handleInputChange}
+              className={styles.textField}
+            />
+            <TextField
+              label={getTranslation(language, 'Post Code')}
+              name={`Addresses[${index}].PostCode`}
+              value={address.PostCode}
+              onChange={handleInputChange}
+              className={styles.textField}
+            />
+          </div>
+        ))}
         <Button type='submit' className={styles.primaryButton}>
           {getTranslation(language, 'Update user')}
         </Button>

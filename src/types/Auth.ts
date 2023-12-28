@@ -1,7 +1,9 @@
+import { Guid } from 'guid-typescript';
+import { Address } from './User';
+
 export interface AuthState {
     isAuthenticated: boolean;
     accessToken: string |null;
-    refreshToken: string | null;
     user: UserProfile | null,
     loading: boolean;
     error: string | null;
@@ -13,10 +15,12 @@ export interface LoginPayload {
 }
 
 export interface UserProfile {
-    id: number;
-    email: string;
-    password: string;
-    name: string;
-    role: string;
-    avatar: string;
+    id?: Guid;
+    Role: string;
+    FirstName: string;
+    LastName: string;
+    Email: string;
+    Password: string;
+    PhoneNumber: string;
+    Addresses: Address[];
 }

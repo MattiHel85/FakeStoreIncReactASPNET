@@ -1,21 +1,17 @@
+import { Guid } from "guid-typescript";
 import { AppDispatch } from "../redux/store";
 import { CartItem } from "./Cart";
 
 export interface Product {
-  id: number;
-  title: string;
-  price: number;
+  productName: string;
   description: string;
-  images: string[];
+  image: string[];
+  price: string;
+  stockQuantity: number;
+  id: Guid;
+  categoryId: Guid;  
   creationAt: string;
   updatedAt: string;
-  category: {
-    id: number;
-    name: string;
-    image: string;
-    creationAt: string;
-    updatedAt: string;
-  };
 }
 
 export interface ProductState {

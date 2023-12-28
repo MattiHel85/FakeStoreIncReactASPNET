@@ -21,8 +21,6 @@ const Products: React.FC = () => {
   const products = useSelector((state: RootState) => state.products.products);
   const categories = useSelector((state: RootState) => state.categories.categories);
   const [searchTerm, setSearchTerm] = useState<string>('');
-  const [minPrice, setMinPrice] = useState<number>(0);
-  const [maxPrice, setMaxPrice] = useState<number>(0);
   const [showSearchForm, setShowSearchForm] = useState(false);
   const { items } = useSelector((state: RootState) => state.cart);
   const [selectedCategory, setSelectedCategory] = useState<number | ''>('');
@@ -34,18 +32,6 @@ const Products: React.FC = () => {
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
-
-  const handleMinPriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMinPrice(Number(event.target.value));
-  };
-
-  const handleMaxPriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMaxPrice(Number(event.target.value));
-  };
-
-  // const handleSearchByPrice = () => {
-  //   dispatch(fetchProductsByPriceRange({ minPrice, maxPrice }));
-  // };
   
   const handleCategoryChange = (event: React.ChangeEvent<{ value: unknown }>) => {
     setSelectedCategory(event.target.value as number | '');
@@ -57,12 +43,11 @@ const Products: React.FC = () => {
     !showSearchForm && setShowSearchForm(true)
   }
 
+
   const filteredProducts = products.filter((filteredProduct) =>
-    filteredProduct.title?.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    (selectedCategory === '' || filteredProduct.category?.id === selectedCategory) &&
-    (minPrice === 0 || filteredProduct.price >= minPrice) &&
-    (maxPrice === 0 || filteredProduct.price <= maxPrice)
+    filteredProduct.productName?.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
 
   const [itemsPerPage, setItemsPerPage] = useState<number>(5); // Number of items to display per page
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -116,22 +101,6 @@ const Products: React.FC = () => {
             ))}
           </TextField>
           <TextField
-            label={getTranslation(language, 'Min Price')}
-            variant="outlined"
-            type="number"
-            value={minPrice}
-            onChange={handleMinPriceChange}
-            className={styles.textField}
-          />
-          <TextField
-            label={getTranslation(language, 'Max Price')}
-            variant="outlined"
-            type="number"
-            value={maxPrice}
-            onChange={handleMaxPriceChange}
-            className={styles.textField}
-          />
-          <TextField
             select
             label={getTranslation(language, 'Items Per Page')}
             value={itemsPerPage}
@@ -147,7 +116,13 @@ const Products: React.FC = () => {
       }
       <Container className={styles.productsContainer}>
         {currentItems.map(product => (
-          <ProductCard key={product.id} product={product} items={items} dispatch={dispatch} onAddToCart={debouncedHandleAddToCart} />
+          <ProductCard 
+            key={product.id.toString()} 
+            product={product} 
+            items={items} 
+            dispatch={dispatch} 
+            onAddToCart={debouncedHandleAddToCart} 
+          />
         ))}
       </Container>
       {totalPages > 1 && (

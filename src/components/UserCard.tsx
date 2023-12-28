@@ -14,21 +14,16 @@ const UserCard: React.FC<UserCardProps> = ({ user}) => {
 
     return(
         <>
-            <Card key={user?.id} className={styles.card}>
-                <CardMedia 
-                    className={styles.cardMedia}
-                    image={user?.avatar}
-                    onClick={navigateToUser}
-                />
+            <Card key={Number(user?.id)} className={styles.card}>
                 <CardContent>
                     <Typography variant="h5">
-                        {user?.name}
+                        {user?.FirstName} {user?.LastName}
                     </Typography>
                     <Typography>
-                        {user?.role}
+                        {user?.Role}
                     </Typography>
                     <Typography>
-                        {user?.email}
+                        {user?.Email}
                     </Typography>
                 </CardContent>
             </Card>   

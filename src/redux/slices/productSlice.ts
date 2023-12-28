@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk} from '@reduxjs/toolkit'
+import { Guid } from "guid-typescript";
 import { Product, AddProductData, ProductData, ProductState } from '../../types/Product'
 
 export const initialState: ProductState = {
@@ -9,7 +10,7 @@ export const initialState: ProductState = {
 
 export const fetchProducts = createAsyncThunk('products/fetchProducts', async () => {
   try {
-      const res = await fetch('https://api.escuelajs.co/api/v1/products')
+      const res = await fetch('https://fakestoreinc.azurewebsites.net/api/v1/products')
       const data = await res.json()
       return data as Product[]
   } catch (err) {
@@ -20,7 +21,7 @@ export const fetchProducts = createAsyncThunk('products/fetchProducts', async ()
 export const fetchProductById = createAsyncThunk('products/fetchProductById', async (productId: Number) => {
   
   try {
-    const res = await fetch(`https://api.escuelajs.co/api/v1/products/${productId}`)
+    const res = await fetch(`https://fakestoreinc.azurewebsites.net/api/v1/products/${productId}`)
     const data = await res.json()
     return data as Product[]
   } catch (err) {
@@ -32,7 +33,7 @@ export const fetchProductsByPriceRange = createAsyncThunk(
   'products/fetchProductsByPriceRange',
   async ({ minPrice, maxPrice }: { minPrice: number; maxPrice: number }) => {
     try {
-      const res = await fetch(`https://api.escuelajs.co/api/v1/products/?price_min=${minPrice}&price_max=${maxPrice}`);
+      const res = await fetch(`https://fakestoreinc.azurewebsites.net/api/v1/products/?price_min=${minPrice}&price_max=${maxPrice}`);
       const data = await res.json();
       return data as Product[];
     } catch (err) {
@@ -45,7 +46,7 @@ export const fetchProductsByCategory = createAsyncThunk(
   'products/fetchProductsByCategory',
   async (categoryId: number) => {
     try {
-      const res = await fetch(`https://api.escuelajs.co/api/v1/products/?categoryId=${categoryId}`);
+      const res = await fetch(`https://fakestoreinc.azurewebsites.net/api/v1/products/?categoryId=${categoryId}`);
       const data = await res.json();
       return data as Product[];
     } catch (err) {
@@ -56,10 +57,10 @@ export const fetchProductsByCategory = createAsyncThunk(
 
 export const createProduct = createAsyncThunk('products/createProduct', async (newProduct: AddProductData) => {
   try { 
-    const res = await fetch('https://api.escuelajs.co/api/v1/products', {
+    const res = await fetch('https://fakestoreinc.azurewebsites.net/api/v1/products', {
       method: 'POST',
       headers: {
-        'Content-Type':'application/json',
+        'Content-Type':'application/json'
       },
       body: JSON.stringify(newProduct), 
     })
@@ -73,7 +74,7 @@ export const createProduct = createAsyncThunk('products/createProduct', async (n
 
 export const updateProduct = createAsyncThunk('products/updateProduct', async (updatedProduct: ProductData) => {
   try { 
-    const res = await fetch(`https://api.escuelajs.co/api/v1/products/${updatedProduct.id}`, {
+    const res = await fetch(`https://fakestoreinc.azurewebsites.net/api/v1/products/${updatedProduct.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type':'application/json',
@@ -88,9 +89,9 @@ export const updateProduct = createAsyncThunk('products/updateProduct', async (u
   }
 });
 
-export const deleteProduct = createAsyncThunk('products/deleteProduct', async (productId: number) => {
+export const deleteProduct = createAsyncThunk('products/deleteProduct', async (productId: Guid) => {
   try {
-    const res = await fetch(`https://api.escuelajs.co/api/v1/products/${productId}`, {
+    const res = await fetch(`https://fakestoreinc.azurewebsites.net/api/v1/products/${productId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

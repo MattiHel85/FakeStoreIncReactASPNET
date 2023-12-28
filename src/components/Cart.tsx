@@ -1,7 +1,6 @@
 import React from 'react';
-
 import { useNavigate } from 'react-router-dom';
-
+import {Guid} from 'guid-typescript';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { 
@@ -36,13 +35,13 @@ const Cart: React.FC = () => {
   const navigate = useNavigate();
   const { items } = useSelector((state: RootState) => state.cart)
   
-  const handleIncreaseQuantity = (productId: number) => {
+  const handleIncreaseQuantity = (productId: Guid) => {
       dispatch(increaseQuantity(productId));        
   };
-  const handleDecreaseQuantity = (productId: number) => {
+  const handleDecreaseQuantity = (productId: Guid) => {
       dispatch(decreaseQuantity(productId));
   };  
-  const handleRemoveFromCart = (productId: number) => {
+  const handleRemoveFromCart = (productId: Guid) => {
       dispatch(removeFromCart(productId)); 
     };
   const handleClearCart = () => {
@@ -71,7 +70,7 @@ const Cart: React.FC = () => {
                         </TableHead>
                         <TableBody>
                           {items.map((item: CartItem) => (
-                            <TableRow key={item.id}>
+                            <TableRow key={Number(item.id)}>
                               <TableCell sx={{ textAlign: 'center'}}>
                                 <IconButton onClick={() => handleDecreaseQuantity(item.id)}>
                                   <RemoveIcon />
@@ -107,7 +106,7 @@ const Cart: React.FC = () => {
                       </Typography>
                       <Typography variant='body2'>
                       {getTranslation(language, 'Subtotal')}: €
-                        {items.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2)}
+                        {items.reduce((total, item) => total + Number(item.price) * item.quantity, 0).toFixed(2)}
                       </Typography>
                       <Button onClick={handleClearCart}>{getTranslation(language, 'Empty cart')}</Button>
                   </Box>

@@ -10,12 +10,12 @@ const handleAddToCart = (
   dispatch: AppDispatch
 ) => {
   
-  const existingCartItem = items.find((item) => item.id === product.id);
+  const existingCartItem = items.find((item) => item.id.toString() === product.id.toString());
 
   if (existingCartItem) {
     
     const updatedCartItems = items.map((item) =>
-      item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+      item.id.toString() === product.id.toString() ? { ...item, quantity: item.quantity + 1 } : item
     );
 
     dispatch(clearCart()); 
@@ -23,7 +23,7 @@ const handleAddToCart = (
   } else {
     const cartItem: CartItem = {
       id: product.id,
-      name: product.title,
+      name: product.productName,
       price: product.price,
       quantity: 1,
     };
@@ -35,3 +35,5 @@ const handleAddToCart = (
 const debouncedHandleAddToCart = debounce(handleAddToCart, 500);
 
 export default debouncedHandleAddToCart;
+
+// export {}
