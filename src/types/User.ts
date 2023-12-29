@@ -14,9 +14,9 @@ export interface User {
 
 export interface Address {
   HouseNumber: number;
-  Street?: string | null;  // Use string | null to represent C#'s string?
+  Street?: string | null;  
   PostCode: string;
-  UserId?: Guid | null;    // Use Guid | null to represent C#'s Guid?
+  UserId?: Guid | null;    
 }
 
 
@@ -28,10 +28,10 @@ export interface UserState {
 }
 
 export interface UserCardProps {
-    user?: User | null
+    user?: UserProfile | null
 }
 
 export interface UpdateUserProps {
-  user?: User | null 
+  user?: UserProfile | null 
   setUser?: (userData: User) => void; 
 }

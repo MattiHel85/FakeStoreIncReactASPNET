@@ -11,10 +11,11 @@ const ContactForm: React.FC = () => {
   const { language } = useLanguage()
   const user = useSelector((state: RootState) => state.auth.user);
   const [formData, setFormData] = useState({
-    name: user ? user.name : '',
-    email: user ? user.email : '',
-    message: '',
-  });
+    FirstName: user ? user.FirstName : '',
+    LastName: user ? user.LastName : '',
+    Email: user ? user.Email : '',
+    Message: '',
+});
   const [showMessage, setShowMessage] = useState(false)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -29,9 +30,10 @@ const ContactForm: React.FC = () => {
     e.preventDefault();
 
     setFormData({
-      name: user ? user.name : '',
-      email: user ? user.email : '',
-      message: '',
+      FirstName: user ? user.FirstName : '',
+      LastName: user ? user.LastName : '',
+      Email: user ? user.Email : '',
+      Message: '',
     });
 
     setShowMessage(true)
@@ -46,16 +48,24 @@ const ContactForm: React.FC = () => {
       >
         <TextField
           label={getTranslation(language, 'Name')}
-          name="name"
-          value={formData.name}
+          name="FirstName"
+          value={formData.FirstName}
+          onChange={handleInputChange}
+          required
+          className={styles.textField}
+        />
+        <TextField
+          label={getTranslation(language, 'Name')}
+          name="LastName"
+          value={formData.LastName}
           onChange={handleInputChange}
           required
           className={styles.textField}
         />
         <TextField
           label={getTranslation(language, 'Email')}
-          name="email"
-          value={formData.email}
+          name="Email"
+          value={formData.Email}
           onChange={handleInputChange}
           required
           type="email"
@@ -63,8 +73,8 @@ const ContactForm: React.FC = () => {
         />
         <TextField
           label={getTranslation(language, 'Message')}
-          name="message"
-          value={formData.message}
+          name="Message"
+          value={formData.Message}
           onChange={handleInputChange}
           required
           multiline

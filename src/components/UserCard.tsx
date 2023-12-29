@@ -1,16 +1,16 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 import { UserCardProps } from "../types/User";
-import { Card, CardContent, CardMedia, Typography } from '@mui/material';
+import { Card, CardContent, Typography } from '@mui/material';
 import styles from '../styles/styles.module.css'
 
 const UserCard: React.FC<UserCardProps> = ({ user}) => {
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
-    const navigateToUser = () => {
-        navigate(`/users/${user?.id}`)
-    }
+    // const navigateToUser = () => {
+    //     navigate(`/users/${user?.id}`)
+    // }
 
     return(
         <>

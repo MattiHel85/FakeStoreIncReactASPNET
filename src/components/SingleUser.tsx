@@ -25,8 +25,16 @@ const SingleUser: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch(`https://api.escuelajs.co/api/v1/users/${id}`);
+                // https://fakestoreinc.azurewebsites.net/api/v1/users/08c1cbd7-3956-4be9-8855-15fd638fe5ec
+                console.log(id);
+                const res = await fetch(`https://fakestoreinc.azurewebsites.net/api/v1/users/${id}`);
+                if (!res.ok) {
+                    console.error(`Danger, Will Robinson, there is an error! ${res.status}`);
+                    console.log("Response details:", await res.text());
+                    return;
+                }
                 const data = await res.json();
+                console.log(data);
                 setUser(data); 
             } catch (err) {
                 console.error("Error fetching user data:", err);
@@ -53,7 +61,7 @@ const SingleUser: React.FC = () => {
                 <Box className={styles.buttonBox}>
                     <Button className={styles.primaryButton} onClick={handleGoBack}>{getTranslation(language, 'Back')}</Button>
                     { 
-                        signedInUser?.role === 'admin' || user?.id === signedInUser?.id ?
+                        signedInUser?.Role === 'admin' || user?.id === signedInUser?.id ?
                             <Button className={styles.updateButton} onClick={toggleUpdateUserForm}>
                                 {/* {openUserUpdateForm ? 'Done' : 'Update User'} */}
                                 {openUserUpdateForm && getTranslation(language, 'Done') }

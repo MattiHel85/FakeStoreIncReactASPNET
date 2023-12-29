@@ -151,7 +151,7 @@ const SingleProduct: React.FC = () => {
                     >
                             {getTranslation(language, 'Back')}
                     </Button>
-                    { user?.role === 'admin' && <Button 
+                    { user?.Role === 'admin' && <Button 
                         onClick={() => setAdminFunctions(true)} 
                         className={styles.secondaryButton}
                     >
@@ -164,7 +164,7 @@ const SingleProduct: React.FC = () => {
                         {getTranslation(language, 'Add to cart')}
                     </Button>
                 </Box>
-                { adminFunctions && user?.role === 'admin' ?
+                { adminFunctions && user?.Role === 'admin' ?
                         <Box className={styles.adminButtonsBox}>
                             <Header title="Admin functions"/>
                             <Box className={styles.adminButtons}>

@@ -12,13 +12,22 @@ import { getTranslation } from '../contextAPI/translations/TranslationService';
 const SignUp: React.FC = () => {
   const {language} = useLanguage();
   const [userData, setUserData] = useState({    
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    avatar: '',
-    role: 'customer',
+    Role: 'Customer',
+    FirstName:'',
+    LastName: '',
+    Email: '',
+    Password: '',
+    ConfirmPassword: '',
+    PhoneNumber: '',
+    Addresses: [
+      {
+        HouseNumber: 0,
+        Street: '',
+        PostCode: ''
+      }
+    ],
   });
+
   const [message, setMessage] = useState<string>(''); 
 
   const navigate = useNavigate();
@@ -48,7 +57,7 @@ const SignUp: React.FC = () => {
     e.preventDefault();
 
     
-    if (userData.password !== userData.confirmPassword) {
+    if (userData.Password !== userData.ConfirmPassword) {
       setMessage(getTranslation(language, 'Passwords do not match. Please try again.'));
       return;
     }
@@ -64,15 +73,22 @@ const SignUp: React.FC = () => {
       <form onSubmit={handleSignUp} className={styles.signInForm}>
         <TextField
           label={getTranslation(language, 'Name')}
-          name="name"
-          value={userData.name}
+          name="FirstName"
+          value={userData.FirstName}
+          onChange={handleInputChange}
+          className={styles.textField}
+        />
+        <TextField
+          label={getTranslation(language, 'Name')}
+          name="LastName"
+          value={userData.LastName}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
           label={getTranslation(language, 'Email')}
           name="email"
-          value={userData.email}
+          value={userData.Email}
           onChange={handleInputChange}
           className={styles.textField}
         />
@@ -80,7 +96,7 @@ const SignUp: React.FC = () => {
           label={getTranslation(language, 'Password')}
           type="password"
           name="password"
-          value={userData.password}
+          value={userData.Password}
           onChange={handleInputChange}
           className={styles.textField}
         />
@@ -88,14 +104,7 @@ const SignUp: React.FC = () => {
           label={getTranslation(language, 'Confirm password')}
           type="password"
           name="confirmPassword"
-          value={userData.confirmPassword}
-          onChange={handleInputChange}
-          className={styles.textField}
-        />
-        <TextField
-          label={getTranslation(language, 'Avatar URL')}
-          name="avatar"
-          value={userData.avatar}
+          value={userData.ConfirmPassword}
           onChange={handleInputChange}
           className={styles.textField}
         />
@@ -103,6 +112,27 @@ const SignUp: React.FC = () => {
           label={getTranslation(language, 'Admin Code (optional)')}
           name="adminCode"
           type="password"
+          onChange={handleInputChange}
+          className={styles.textField}
+        />
+        <TextField
+          label={getTranslation(language, 'House Number')}
+          name={`Addresses.HouseNumber`}
+          value={userData.Addresses[0].HouseNumber}
+          onChange={handleInputChange}
+          className={styles.textField}
+        />
+        <TextField
+          label={getTranslation(language, 'Street')}
+          name={`Addresses.Street`}
+          value={userData.Addresses[0].Street || ''}
+          onChange={handleInputChange}
+          className={styles.textField}
+        />
+        <TextField
+          label={getTranslation(language, 'Post Code')}
+          name={`Addresses.PostCode`}
+          value={userData.Addresses[0].PostCode}
           onChange={handleInputChange}
           className={styles.textField}
         />

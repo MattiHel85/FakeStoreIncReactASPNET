@@ -20,7 +20,7 @@ export interface UserProfile {
     FirstName: string;
     LastName: string;
     Email: string;
-    Password: string;
+    Password?: string;
     PhoneNumber: string;
-    Addresses: Address[];
+    Addresses?: Address[];
 }

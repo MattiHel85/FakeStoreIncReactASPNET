@@ -9,7 +9,7 @@ export const initialState: CategoryState = {
 
 export const fetchCategories = createAsyncThunk('categories/fetchCategories', async () => {
   try {
-      const res = await fetch('https://fakestoreinc.azurewebsites.net/api/v1/categories')
+      const res = await fetch('https://fakestoreinc.azurewebsites.net/api/v1/categorys')
       const data = await res.json()
       return data as Category[]
   } catch (err) {

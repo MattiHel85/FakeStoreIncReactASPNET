@@ -3,7 +3,7 @@ import { User, UserState } from '../../types/User'
 
 export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
     try {
-        const res = await fetch('https://api.escuelajs.co/api/v1/users')
+        const res = await fetch('https://fakestoreinc.azurewebsites.net/api/v1/users/')
         const data = await res.json()
         return data as User[]
     } catch (err) {
@@ -13,7 +13,7 @@ export const fetchUsers = createAsyncThunk('users/fetchUsers', async () => {
 
 export const registerUser = createAsyncThunk('users/registerUser', async (userData: User) => {
   try {
-    const res = await fetch('https://api.escuelajs.co/api/v1/users/', {
+    const res = await fetch('https://fakestoreinc.azurewebsites.net/api/v1/users/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ export const registerUser = createAsyncThunk('users/registerUser', async (userDa
 
 export const updateUser = createAsyncThunk('users/updateUser', async (userData: User) => {
   try {
-    const res = await fetch(`https://api.escuelajs.co/api/v1/users/${userData.id}`, {
+    const res = await fetch(`https://fakestoreinc.azurewebsites.net/api/v1/users/${userData.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
