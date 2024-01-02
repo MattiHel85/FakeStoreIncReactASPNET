@@ -10,7 +10,7 @@
 
 I created the FakeStore Inc React app using React, Redux, TypeScript, with styling done using SASS and MUI components.
 
-1. I used the following API  [https://fakeapi.platzi.com/](https://fakeapi.platzi.com/)
+1. I built the following API using ASP.NET CORE, Entity Framework Core, and PostgreSQL and deployed it in [Azure](https://fakestoreinc.azurewebsites.net/api/v1/). Here is the GitHub [repo](https://github.com/MattiHel/fs16_CSharp-FullStack), which is a private repo for now but I will be moving into a public repo soon enough.
 2. Pages created (Landing page, Products, Product, Users, User, Sign Up, Sign In, Admin, AccessDenied, and AlreadySignedIn)
 3. I created a Redux store for the following features:
   - product reducer: get all products, find a single product, Add Product, Edit Product, Delete Product
@@ -27,13 +27,13 @@ I created the FakeStore Inc React app using React, Redux, TypeScript, with styli
   - "/checkout" - checkout page
   - "/contact" - contact page
 5. Implemented unit testing implemented for reducers mentioned above
-6. Deployed the application  [https://fakeshop-inc.netlify.app/](here)
+6. Deployed the application  [https://fakestoreinc.netlify.app/](here)
+
 
 ## Bonus
 
-1. I used context API to switch languages between English and Finnish
-2. I used pagination when displaying all the products and users using MUI
-3. In order to prevent multiple items with quantities of 1 to be added to the cart I wrote a debounce method and used it to prevent rapid clicks on 'add to cart'
+1. I used pagination when displaying all the products and users using MUI
+2. In order to prevent multiple items with quantities of 1 to be added to the cart I wrote a debounce method and used it to prevent rapid clicks on 'add to cart'
 
 ## Instruction to start the project
 

@@ -17,7 +17,7 @@ export const fetchCategories = createAsyncThunk('categories/fetchCategories', as
       throw err;
   }
 })
-export const fetchCategoryById = createAsyncThunk('categories/fetchCategories', async (categoryId: Guid) => {
+export const fetchCategoryById = createAsyncThunk('categories/fetchCategories', async (categoryId: Guid | number) => {
   try {
       const res = await fetch(`https://fakestoreinc.azurewebsites.net/api/v1/categorys/${categoryId}`)
       const data = await res.json()

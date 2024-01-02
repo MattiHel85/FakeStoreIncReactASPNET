@@ -8,11 +8,12 @@ import UpdateUser from "./UpdateUser";
 import { Button, Container, Box } from "@mui/material";
 import UserCard from "./UserCard";
 import styles from '../styles/styles.module.css'
+import { UserProfile } from "../types/Auth";
 
 const SingleUser: React.FC = () => {
     const {id} = useParams();
     const navigate = useNavigate()
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<UserProfile | null | undefined>(null);
     const [openUserUpdateForm, setOpenUserUpdateForm] = useState(false)
 
 

@@ -31,13 +31,13 @@ const Cart: React.FC = () => {
   const navigate = useNavigate();
   const { items } = useSelector((state: RootState) => state.cart)
   
-  const handleIncreaseQuantity = (productId: Guid) => {
+  const handleIncreaseQuantity = (productId: Guid | number) => {
       dispatch(increaseQuantity(productId));        
   };
-  const handleDecreaseQuantity = (productId: Guid) => {
+  const handleDecreaseQuantity = (productId: Guid | number) => {
       dispatch(decreaseQuantity(productId));
   };  
-  const handleRemoveFromCart = (productId: Guid) => {
+  const handleRemoveFromCart = (productId: Guid | number) => {
       dispatch(removeFromCart(productId)); 
     };
   const handleClearCart = () => {

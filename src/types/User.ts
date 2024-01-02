@@ -2,7 +2,7 @@ import {Guid} from 'guid-typescript';
 import { UserProfile } from './Auth';
 
 export interface User {
-  id?: Guid;
+  id?: Guid | number;
   role: string;
   firstName: string;
   lastName: string;
@@ -32,6 +32,6 @@ export interface UserCardProps {
 }
 
 export interface UpdateUserProps {
-  user?: UserProfile | null 
+  user?: UserProfile | null | undefined
   setUser?: (userData: User) => void; 
 }

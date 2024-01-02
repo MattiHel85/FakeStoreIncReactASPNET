@@ -8,8 +8,8 @@ export interface Product {
   Image: string[];
   Price: string;
   StockQuantity: number;
-  id: Guid;
-  CategoryId: Guid;  
+  id: Guid | number;
+  CategoryId: Guid |number;  
   CreationAt: string;
   UpdatedAt: string;
 }

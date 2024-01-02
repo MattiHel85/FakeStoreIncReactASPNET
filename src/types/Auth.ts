@@ -15,7 +15,7 @@ export interface LoginPayload {
 }
 
 export interface UserProfile {
-    id?: Guid;
+    id?: Guid | number;
     role: string;
     firstName: string;
     lastName: string;
