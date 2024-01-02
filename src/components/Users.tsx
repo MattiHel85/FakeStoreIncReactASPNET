@@ -10,11 +10,7 @@ import { Container, TextField, MenuItem, Box, Pagination } from '@mui/material';
 import { RootState } from '../redux/slices/rootSlice';
 import styles from '../styles/styles.module.css';
 
-import { useLanguage } from '../contextAPI/LanguageContext';
-import { getTranslation } from '../contextAPI/translations/TranslationService';
-
 const Users: React.FC = () => {
-  const {language} = useLanguage();
   const { users, loading, error } = useSelector((state: RootState) => state.users);
   const dispatch: AppDispatch = useDispatch();
 
@@ -37,7 +33,7 @@ const Users: React.FC = () => {
   }, [dispatch]);
 
   const filteredUsers = users.filter((user: User) =>
-    user.Email.toLowerCase().includes(searchTerm.toLowerCase())
+    user.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const indexOfLastUser = currentPage * usersPerPage;
@@ -55,7 +51,7 @@ const Users: React.FC = () => {
     <>
       <Box className={styles.searchContainer}>
         <TextField
-          label={getTranslation(language, 'Search by email')}
+          label={'Search by email'}
           variant="outlined"
           value={searchTerm}
           onChange={handleSearchChange}
@@ -63,7 +59,7 @@ const Users: React.FC = () => {
         />
         <TextField
           select
-          label={getTranslation(language, 'Users per page')}
+          label={'Users per page'}
           value={usersPerPage}
           onChange={handleUsersPerPageChange}
           className={styles.textField}

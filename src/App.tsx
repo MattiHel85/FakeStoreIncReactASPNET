@@ -46,8 +46,8 @@ const App = () => {
 
 
               {/* admin routes */}
-              <Route path='/users' element={ user?.Role=== 'admin' ? <UsersPage /> : <AccessDeniedPage />} />
-              <Route path='/admin' element={ user?.Role=== 'admin' ? <AdminPage /> : <AccessDeniedPage />} />
+              <Route path='/users' element={ user?.role=== 'admin' ? <UsersPage /> : <AccessDeniedPage />} />
+              <Route path='/admin' element={ user?.role=== 'admin' ? <AdminPage /> : <AccessDeniedPage />} />
 
             </Routes>
           </Router> 

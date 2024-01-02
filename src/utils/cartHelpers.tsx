@@ -23,8 +23,8 @@ const handleAddToCart = (
   } else {
     const cartItem: CartItem = {
       id: product.id,
-      name: product.productName,
-      price: product.price,
+      name: product.ProductName,
+      price: product.Price,
       quantity: 1,
     };
 
@@ -35,5 +35,3 @@ const handleAddToCart = (
 const debouncedHandleAddToCart = debounce(handleAddToCart, 500);
 
 export default debouncedHandleAddToCart;
-
-// export {}

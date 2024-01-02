@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk} from '@reduxjs/toolkit'
-import { Guid } from "guid-typescript";
 import { Product, AddProductData, ProductData, ProductState } from '../../types/Product'
 
 export const initialState: ProductState = {
@@ -89,7 +88,7 @@ export const updateProduct = createAsyncThunk('products/updateProduct', async (u
   }
 });
 
-export const deleteProduct = createAsyncThunk('products/deleteProduct', async (productId: Guid) => {
+export const deleteProduct = createAsyncThunk('products/deleteProduct', async (productId: string) => {
   try {
     const res = await fetch(`https://fakestoreinc.azurewebsites.net/api/v1/products/${productId}`, {
       method: 'DELETE',
@@ -214,7 +213,7 @@ export const productSlice = createSlice({
         })
         .addCase(deleteProduct.fulfilled, (state, action) => {
             state.loading = false;
-            state.products = state.products.filter((product) => product.id !== action.payload);
+            state.products = state.products.filter((product) => product.id?.toString() !== action.payload);
             state.error = null;
         })
         .addCase(deleteProduct.rejected, (state, action) => {

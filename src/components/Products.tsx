@@ -7,35 +7,46 @@ import styles from '../styles/styles.module.css'
 import { RootState } from '../redux/slices/rootSlice';
 import { AppDispatch } from '../redux/store';
 
-import { fetchProducts, fetchProductsByCategory } from '../redux/slices/productSlice';
+import { fetchProducts } from '../redux/slices/productSlice';
 import debouncedHandleAddToCart from '../utils/cartHelpers';
 
 import ProductCard from './ProductCard';
-
-import { useLanguage } from '../contextAPI/LanguageContext';
-import { getTranslation } from '../contextAPI/translations/TranslationService';
+import { Category } from '../types/Category';
+import { fetchCategories, fetchCategoryById } from '../redux/slices/categorySlice';
+import { Guid } from 'guid-typescript';
 
 const Products: React.FC = () => {
-  const {language} = useLanguage();
   const dispatch: AppDispatch = useDispatch();
   const products = useSelector((state: RootState) => state.products.products);
   const categories = useSelector((state: RootState) => state.categories.categories);
+  const [category, setCategory] = useState<Category | unknown>();
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [showSearchForm, setShowSearchForm] = useState(false);
   const { items } = useSelector((state: RootState) => state.cart);
-  const [selectedCategory, setSelectedCategory] = useState<number | ''>('');
+  const [selectedCategory, setSelectedCategory] = useState<Guid | ''>('');
 
   useEffect(() => {
     dispatch(fetchProducts());
+    dispatch(fetchCategories());
   }, [dispatch]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
   
-  const handleCategoryChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setSelectedCategory(event.target.value as number | '');
-    dispatch(fetchProductsByCategory(event.target.value as number));
+  const handleCategoryChange = async (event: React.ChangeEvent<{ value: unknown }>) => {
+    const selectedCategoryId = event.target.value as Guid;
+    setSelectedCategory(selectedCategoryId);
+
+    if (selectedCategoryId) {
+      // Fetch the category by id if it is selected
+      const fetchedCategory = await dispatch(fetchCategoryById(selectedCategoryId));
+      console.log(fetchedCategory.payload);
+      setCategory(fetchedCategory.payload);
+    } else {
+      // If no category is selected, reset the category state
+      dispatch(fetchCategories());
+    }
   };
 
   const handleShowSearch = () => {
@@ -43,9 +54,9 @@ const Products: React.FC = () => {
     !showSearchForm && setShowSearchForm(true)
   }
 
-
-  const filteredProducts = products.filter((filteredProduct) =>
-    filteredProduct.productName?.toLowerCase().includes(searchTerm.toLowerCase())
+  let filteredProducts = products.filter((filteredProduct) =>
+    (filteredProduct.ProductName?.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (selectedCategory ? filteredProduct.CategoryId === selectedCategory : true))
   );
 
 
@@ -72,14 +83,14 @@ const Products: React.FC = () => {
   return (
     <>
       <Box className={styles.productsContainer}>
-      { !showSearchForm && <Button onClick={handleShowSearch} className={styles.searchButton}> {getTranslation(language, 'Open Search')} </Button> }
-      { showSearchForm && <Button onClick={handleShowSearch} className={styles.searchButton}> {getTranslation(language, 'Close Search')} </Button> }
+      { !showSearchForm && <Button onClick={handleShowSearch} className={styles.searchButton}> {'Open Search'} </Button> }
+      { showSearchForm && <Button onClick={handleShowSearch} className={styles.searchButton}> {'Close Search'} </Button> }
       </Box>
       {
         showSearchForm && 
         <FormControl className={styles.form}>
           <TextField
-            label={getTranslation(language, 'Search products')} 
+            label={'Search products'} 
             variant="outlined"
             value={searchTerm}
             onChange={handleSearchChange}
@@ -90,19 +101,19 @@ const Products: React.FC = () => {
             id="category"
             value={selectedCategory}
             onChange={handleCategoryChange}
-            label={getTranslation(language, 'Category')} 
+            label={'Category'} 
             className={styles.textField}
           >
-            <MenuItem value="">{getTranslation(language, 'Categories')}</MenuItem>
+            <MenuItem value="">{'Categories'}</MenuItem>
             {categories.map((category) => (
               <MenuItem key={category.id} value={category.id}>
-                {category.name}
+                {category.categoryName}
               </MenuItem>
             ))}
           </TextField>
           <TextField
             select
-            label={getTranslation(language, 'Items Per Page')}
+            label={'Items Per Page'}
             value={itemsPerPage}
             onChange={handleItemsPerPageChange}
             className={styles.textField}

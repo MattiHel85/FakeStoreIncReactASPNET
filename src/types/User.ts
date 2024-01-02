@@ -3,20 +3,20 @@ import { UserProfile } from './Auth';
 
 export interface User {
   id?: Guid;
-  Role: string;
-  FirstName: string;
-  LastName: string;
-  Email: string;
-  Password: string;
-  PhoneNumber: string;
-  Addresses: Address[];
+  role: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  phoneNumber: string;
+  addresses: Address[];
 }
 
 export interface Address {
-  HouseNumber: number;
-  Street?: string | null;  
-  PostCode: string;
-  UserId?: Guid | null;    
+  houseNumber: number;
+  street?: string | null;  
+  postCode: string;
+  userId?: Guid | null;    
 }
 
 

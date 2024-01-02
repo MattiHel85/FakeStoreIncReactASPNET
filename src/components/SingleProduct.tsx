@@ -1,29 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Guid } from "guid-typescript";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { RootState } from "../redux/slices/rootSlice";
 import { AppDispatch } from '../redux/store';
 import { fetchProductById } from "../redux/slices/productSlice";
-import { fetchProductOfTheMonthById } from "../redux/slices/productOfTheMonthSlice";
+import { fetchCategoryById } from "../redux/slices/categorySlice";
 import { Product } from "../types/Product";
-// import UpdateProduct from "./UpdateProduct";
+import UpdateProduct from "./UpdateProduct";
 import { ImageList, Typography, Container } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { deleteProduct } from "../redux/slices/productSlice";
 import styles from '../styles/styles.module.css';
-// import debouncedHandleAddToCart from '../utils/cartHelpers';
+import debouncedHandleAddToCart from '../utils/cartHelpers';
 import Header from "./Header";
-
-import { useLanguage } from '../contextAPI/LanguageContext';
-import { getTranslation } from '../contextAPI/translations/TranslationService';
+import { Category } from "../types/Category";
 
 const SingleProduct: React.FC = () => {
-    const {language} = useLanguage();
     const [product, setProduct] = useState<Product | undefined>(undefined);
-
+    const [category, setCategory] = useState<Category | undefined>(undefined);
     const [openProductUpdateForm, setOpenProductUpdateForm] = useState(false)
     const [adminFunctions, setAdminFunctions] = useState(false)
     const [showDeleteButton, setShowDeleteButton] = useState(false)
@@ -48,6 +44,22 @@ const SingleProduct: React.FC = () => {
         fetchProduct();
     }, [dispatch, id]);
 
+    useEffect(() => {
+        const fetchCategory = async () => {
+          if (product && product.CategoryId) {
+            try {
+              const response = await dispatch(fetchCategoryById(product.CategoryId));
+              const categoryData = response.payload as Category;
+              setCategory(categoryData);
+            } catch (error) {
+              console.error("Error fetching category data:", error);
+            }
+          }
+        };
+    
+        fetchCategory();
+      }, [dispatch, product]);
+
     const { items } = useSelector((state: RootState) => state.cart);
     const user = useSelector((state: RootState) => state.auth.user);
 
@@ -56,21 +68,26 @@ const SingleProduct: React.FC = () => {
         !openProductUpdateForm && setOpenProductUpdateForm(true)
     }
 
-    // const handleAddToCart = () => {
-    //     if (product) {
-    //         debouncedHandleAddToCart(product, items, dispatch);
-    //     }
-    // };
+    const handleAddToCart = () => {
+        if (product) {
+            debouncedHandleAddToCart(product, items, dispatch);
+        }
+    };
 
-    // const handleDelete = () => {
-    //     dispatch(deleteProduct(new Guid(product?.id)));
-    //     navigate('/products')
-    // }
-
-    const handleSetProductOfTheMonth = (productId: number) => {
-        dispatch(fetchProductOfTheMonthById(productId))
-        navigate(`/`)
-    }
+    const handleDelete = async () => {
+      try {
+        const productId = product?.id?.toString();
+        if (productId) {
+          await dispatch(deleteProduct(productId));
+          navigate('/products');
+        } else {
+          console.error('Product ID is undefined or null.');
+        }
+      } catch (error) {
+        console.error('Error deleting product:', error);
+      }
+    };
+    
 
     const handleShowDeleteButton = () => {
         setShowDeleteButton(true)
@@ -81,12 +98,12 @@ const SingleProduct: React.FC = () => {
     }
 
     if (!product) {
-        return <p>{getTranslation(language, 'Product not found')}</p>;
+        return <p>{'Product not found'}</p>;
       }
 
     return (
         <>
-            <Typography sx={{ textAlign: 'center', margin: '50px'}} variant="h4">{product.productName}</Typography>
+            <Typography sx={{ textAlign: 'center', margin: '50px'}} variant="h4">{product.ProductName}</Typography>
             <Container
                 sx={{
                     display: 'flex',
@@ -94,9 +111,9 @@ const SingleProduct: React.FC = () => {
                     marginBottom: '50px'
                 }}
             >
-                <ImageList sx={{  minWidth: 250 }} cols={product.image.length} rowHeight={164}>
+                <ImageList sx={{  minWidth: 250 }} cols={product.Image.length} rowHeight={164}>
 
-                    {product.image.map((item: string, index: number ) => (
+                    {product.Image.map((item: string, index: number ) => (
                             <img 
                                 key={index}
                                 className={styles.productImages}
@@ -122,19 +139,19 @@ const SingleProduct: React.FC = () => {
                     sx={{
                         marginBottom: '15px'
                     }}
-                    variant="h4">€{product.price}
+                    variant="h4">€{product.Price}
                 </Typography>
-                {/* <Typography
-                    sx={{
-                        marginBottom: '15px'
-                    }}
-                    variant="h6">{getTranslation(language, 'Category')}: {product.categoryId}
-                </Typography> */}
                 <Typography
                     sx={{
                         marginBottom: '15px'
                     }}
-                    variant="body1">{product.description}
+                    variant="h6">{'Category'}: {category?.categoryName}
+                </Typography>
+                <Typography
+                    sx={{
+                        marginBottom: '15px'
+                    }}
+                    variant="body1">{product.Description}
                 </Typography>
 
                 <Box
@@ -149,22 +166,22 @@ const SingleProduct: React.FC = () => {
                         onClick={() => navigate(-1)} 
                         className={styles.secondaryButton}
                     >
-                            {getTranslation(language, 'Back')}
+                            {'Back'}
                     </Button>
-                    { user?.Role === 'admin' && <Button 
+                    { user?.role === 'admin' && <Button 
                         onClick={() => setAdminFunctions(true)} 
                         className={styles.secondaryButton}
                     >
-                            {getTranslation(language, 'Admin')}
+                            {'Admin'}
                     </Button>}
                     <Button 
-                        // onClick={handleAddToCart}
+                        onClick={handleAddToCart}
                         className={styles.primaryButton}
                     >
-                        {getTranslation(language, 'Add to cart')}
+                        {'Add to cart'}
                     </Button>
                 </Box>
-                { adminFunctions && user?.Role === 'admin' ?
+                { adminFunctions && user?.role === 'admin' ?
                         <Box className={styles.adminButtonsBox}>
                             <Header title="Admin functions"/>
                             <Box className={styles.adminButtons}>
@@ -173,10 +190,10 @@ const SingleProduct: React.FC = () => {
                                     className={styles.updateButton}
                                 >
                                         {
-                                            openProductUpdateForm && getTranslation(language, 'Done')
+                                            openProductUpdateForm && 'Done'
                                         }
                                         {
-                                            !openProductUpdateForm && getTranslation(language, 'Update')
+                                            !openProductUpdateForm && 'Update'
                                         }
                                 </Button>
                                 {
@@ -185,7 +202,7 @@ const SingleProduct: React.FC = () => {
                                         onClick={handleShowDeleteButton} 
                                         className={styles.cardDeleteButton}
                                     >
-                                            {getTranslation(language, 'delete')}
+                                            {'delete'}
                                     </Button>
                                 }
                                 { 
@@ -195,27 +212,21 @@ const SingleProduct: React.FC = () => {
                                             onClick={handleHideDeleteButton}
                                             className={styles.hideDeleteButton}
                                         >
-                                            {getTranslation(language, "don't delete")}
+                                            {"don't delete"}
                                         </Button>
                                         <Button 
-                                            // onClick={handleDelete} 
+                                            onClick={handleDelete} 
                                             className={styles.cardDeleteButton}
                                         >
-                                            {getTranslation(language, 'yes, delete')}
+                                            {'yes, delete'}
                                         </Button>                                
                                     </>
-                                }
-                                <Button 
-                                    onClick={() => handleSetProductOfTheMonth(Number(product?.id))} 
-                                    className={styles.potmButton}
-                                >
-                                        {getTranslation(language, 'Make product of month')}
-                                </Button>                                
+                                }                            
                                 <Button 
                                     onClick={() => setAdminFunctions(false)} 
                                     className={styles.doneButton}
                                 >
-                                        {getTranslation(language, 'Done')}
+                                        {'Done'}
                                 </Button>                                
                             </Box>
                         </ Box> : 
@@ -223,7 +234,7 @@ const SingleProduct: React.FC = () => {
                     }
             </Container>
             { 
-                // openProductUpdateForm ?  <UpdateProduct product={product} /> : <></>            
+                openProductUpdateForm ?  <UpdateProduct product={product} /> : <></>            
             }  
         </>
     );

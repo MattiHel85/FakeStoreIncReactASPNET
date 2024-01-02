@@ -23,11 +23,6 @@ import { logout } from '../redux/slices/authSlice';
 import Cart from './Cart';
 import SignIn from './SignIn';
 
-import LanguageSwitcher from './LanguageSwitcher';
-
-import { useLanguage } from '../contextAPI/LanguageContext';
-import { getTranslation } from '../contextAPI/translations/TranslationService';
-
 const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
   '& .MuiBadge-badge': {
     right: -3,
@@ -38,7 +33,6 @@ const StyledBadge = styled(Badge)<BadgeProps>(({ theme }) => ({
 }));
 
 function TopAppBar() {
-  const { language } = useLanguage()
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null); // Add state for cart menu
   const [anchorElCart, setAnchorElCart] = useState<null | HTMLElement>(null); // Add state for cart menu
@@ -89,7 +83,7 @@ function TopAppBar() {
 
   return (
 
-    <AppBar position="static" sx={{ backgroundColor: 'white' }}>
+    <AppBar position="static" sx={{ backgroundColor: 'rgba(255, 162, 0, 0.75)' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -101,7 +95,7 @@ function TopAppBar() {
               display: 'flex',
               alignItems: 'center', 
               fontFamily: 'monospace',
-              fontWeight: 900,
+              fontWeight: 1000,
               letterSpacing: '.1rem',
               fontSize: {xs: '1em', md: '2.25em'},
               color: 'black',
@@ -112,20 +106,14 @@ function TopAppBar() {
             FakeStore Inc
           </Typography>
 
-          {/* Language switch*/}
-          <Box
-            sx={{ display: 'flex', alignItems: 'center' }}
-          >
-            <LanguageSwitcher />
-          </Box>  
           {/* User Menu */}
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
             { isAuthenticated ? (
-              <Tooltip title={getTranslation(language, 'user')}>
+              <Tooltip title={'user'}>
                 <>
                     <IconButton onClick={handleOpenNavMenu} sx={{ p: 0, color: 'black', mr: '0.05em' }}>
                         <PersonIcon sx={{ fontSize: {xs: '1em', md: '1.5em'}}} />
-                        <Typography sx={{mr: '.25em',fontSize: {xs: '.5em', md: '.75em'}}} >{getTranslation(language, 'Hello')}, {user?.FirstName }</Typography>
+                        <Typography sx={{mr: '.25em',fontSize: {xs: '.5em', md: '.75em'}}} >{'Hello'}, {user?.firstName }</Typography>
                     </IconButton>
                     <Menu
                       sx={{ mt: '45px'}}
@@ -149,18 +137,18 @@ function TopAppBar() {
                         }}
                       >
                         {
-                          user?.Role === 'admin' && 
+                          user?.role === 'admin' && 
                           <Link to={'/admin'} style={{textDecoration: 'none', color: 'black'}}>
-                            <Typography sx={{mr: '.25em',fontSize: {xs: '1rem', md: '1.5rem'}}} >{getTranslation(language, 'Admin')} </Typography>
+                            <Typography sx={{mr: '.25em',fontSize: {xs: '1rem', md: '1.5rem'}}} >{'Admin'} </Typography>
                           </Link>
                         }
 
                         <Link to={`/users/${user?.id}`} style={{textDecoration: 'none', color: 'black'}}>
-                          <Typography sx={{mr: '.25em',fontSize: {xs: '1rem', md: '1.5rem'}}} >{getTranslation(language, 'My Profile')}</Typography>
+                          <Typography sx={{mr: '.25em',fontSize: {xs: '1rem', md: '1.5rem'}}} >{'My Profile'}</Typography>
                         </Link>
 
                         <IconButton sx={{ p: 0, color: 'black', mr: '0.05em' }} onClick={handleLogout}>
-                          <Typography sx={{mr: '.25em',fontSize: {xs: '1rem', md: '1.5rem'}}} >{getTranslation(language, 'Sign out')}</Typography>
+                          <Typography sx={{mr: '.25em',fontSize: {xs: '1rem', md: '1.5rem'}}} >{'Sign out'}</Typography>
                         </IconButton>
                       </Box>
                     </Menu>
@@ -171,7 +159,7 @@ function TopAppBar() {
             <Tooltip title="sign in">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, color: 'black', mr: '0.05em' }}>
                 <Typography sx={{mr: '.25em',fontSize: {xs: '1rem', md: '1.5rem'}}} >
-                {getTranslation(language, 'sign in')} 
+                {'sign in'} 
                 </Typography>
                 <LoginIcon 
                   sx={{
@@ -243,7 +231,7 @@ function TopAppBar() {
             >
               <Cart />
               { items.length > 0 && <Link style={{ textDecoration: 'none', color: 'rgb(0, 209, 255', fontWeight: 700, display: 'flex', justifyContent: 'flex-end', padding: '0.75em'}} to={'/checkout'}>
-                <Typography variant='body1'>{getTranslation(language, 'Go to checkout')}</Typography>
+                <Typography variant='body1'>{'Go to checkout'}</Typography>
               </Link>}
             </Menu>
             

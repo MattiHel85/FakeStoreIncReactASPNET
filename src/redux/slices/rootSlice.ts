@@ -5,11 +5,9 @@ import userSlice from './userSlice'
 import categorySlice from './categorySlice'
 import cartSlice from './cartSlice'
 import authSlice from './authSlice'
-import productOfTheMonthSlice from './productOfTheMonthSlice'
 
 export const rootReducer = combineReducers({
     products: productSlice,
-    productOfTheMonth: productOfTheMonthSlice,
     users: userSlice,
     categories: categorySlice,
     cart: cartSlice,

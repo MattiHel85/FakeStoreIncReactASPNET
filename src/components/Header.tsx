@@ -8,9 +8,9 @@ const Header: React.FC<HeaderProps> = ({ title, body }) => {
   return (
     <>
       <Typography variant='h4' className={styles.headerText}>
-        {title}
+        {title.toUpperCase()}
       </Typography>
-      <Typography variant='h6' className={styles.headerBody}>
+      <Typography variant='h5' className={styles.headerBody}>
         {body}
       </Typography>
     </>

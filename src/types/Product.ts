@@ -3,15 +3,15 @@ import { AppDispatch } from "../redux/store";
 import { CartItem } from "./Cart";
 
 export interface Product {
-  productName: string;
-  description: string;
-  image: string[];
-  price: string;
-  stockQuantity: number;
+  ProductName: string;
+  Description: string;
+  Image: string[];
+  Price: string;
+  StockQuantity: number;
   id: Guid;
-  categoryId: Guid;  
-  creationAt: string;
-  updatedAt: string;
+  CategoryId: Guid;  
+  CreationAt: string;
+  UpdatedAt: string;
 }
 
 export interface ProductState {
@@ -33,20 +33,22 @@ export interface ProductCardProps {
 }
 
 export interface AddProductData {
-  title: String;
-  description: string;
-  price: number;
-  images: string[];
-  categoryId: Number;
+  ProductName: string;
+  Description: string;
+  Image: string[];
+  Price: string;
+  StockQuantity: number;
+  CategoryId: Guid | number;  
 }
 
 export interface ProductData {
-  id: Number;
-  title: String;
-  description: string;
-  price: number;
-  images: string[];
-  categoryId: Number;
+  id: Guid | number;
+  ProductName: string;
+  Description: string;
+  Image: string[];
+  Price: string;
+  StockQuantity: number;
+  CategoryId: Guid | number; 
 }
 
 export interface updateProductProps {

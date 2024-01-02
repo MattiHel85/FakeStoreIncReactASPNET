@@ -1,23 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from '../redux/store';
 import { Guid } from "guid-typescript";
 import { ProductCardProps } from "../types/Product";
-
+import { fetchCategoryById } from "../redux/slices/categorySlice";
 import { Card, CardContent, CardMedia, Typography, Button, CardActions } from '@mui/material';
 import styles from '../styles/styles.module.css'
 
-import { useLanguage } from '../contextAPI/LanguageContext';
-import { getTranslation } from '../contextAPI/translations/TranslationService';
-
-const ProductCard: React.FC<ProductCardProps> = ({ product, items, dispatch, onAddToCart}) => {
-    const { language } = useLanguage()
+const ProductCard: React.FC<ProductCardProps> = ({ product, items, onAddToCart}) => {
+    const dispatch: AppDispatch = useDispatch(); 
     const navigate = useNavigate();
     const id = product?.id;
-    const firstImage = product?.image?.[0];
-
+    const firstImage = product?.Image?.[0];
+    const [categoryName, setCategoryName] = useState<string | undefined>(undefined);
     const navigateToProduct = () => {
         navigate(`/products/${id}`)
     }
+
+    useEffect(() => {
+        const fetchCategory = async () => {
+          if (product && product.CategoryId) {
+            try {
+              const response = await dispatch(fetchCategoryById(product.CategoryId));
+              const categoryData = response.payload as { name: string };
+              setCategoryName(categoryData.name);
+            } catch (error) {
+              console.error("Error fetching category data:", error);
+            }
+          }
+        };
+    
+        fetchCategory();
+      }, [dispatch, product]);
 
     const handleAddToCart = () => {
         onAddToCart && onAddToCart(product, items, dispatch);
@@ -27,7 +42,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, items, dispatch, onA
         <>
             <Card 
                 className={styles.productCard} 
-                // key={product.id}
+                key={Number(product.id)}
             >
                 <CardMedia 
                     onClick={navigateToProduct}
@@ -39,13 +54,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, items, dispatch, onA
                 />
                 <CardContent>
                     <Typography variant="h5" sx={{marginBottom: '1.5em'}}>
-                        {product.productName}
+                        {product.ProductName}
                     </Typography>
                     <Typography sx={{marginBottom: '1em'}}>
-                        {product.description}
+                        {product.Description}
                     </Typography>
                     <Typography variant="body1" sx={{marginBottom: '1.5em'}}>
-                    {/* {getTranslation(language, 'Category')}: {product.categoryId} */}
+                    {'Category'}: {categoryName}
                     </Typography>
                 </CardContent>
                 <CardActions
@@ -57,14 +72,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, items, dispatch, onA
                     }}
                 >
                     <Typography variant="h5">
-                        €{product.price}
+                        €{product.Price}
                     </Typography>
 
                     <Button 
                         onClick={handleAddToCart} 
                         className={styles.primaryCardButton}
                         size='large'>
-                            {getTranslation(language, 'Add to cart')} 
+                            {'Add to cart'} 
                     </Button>
                 </CardActions>
             </Card>   

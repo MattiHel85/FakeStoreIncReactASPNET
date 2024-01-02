@@ -6,24 +6,20 @@ import { AppDispatch } from '../redux/store';
 import { registerUser } from '../redux/slices/userSlice';
 import styles from '../styles/styles.module.css';
 
-import { useLanguage } from '../contextAPI/LanguageContext';
-import { getTranslation } from '../contextAPI/translations/TranslationService';
-
 const SignUp: React.FC = () => {
-  const {language} = useLanguage();
   const [userData, setUserData] = useState({    
-    Role: 'Customer',
-    FirstName:'',
-    LastName: '',
-    Email: '',
-    Password: '',
-    ConfirmPassword: '',
-    PhoneNumber: '',
-    Addresses: [
+    role: 'Customer',
+    firstName:'',
+    lastName: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    phoneNumber: '',
+    addresses: [
       {
-        HouseNumber: 0,
-        Street: '',
-        PostCode: ''
+        houseNumber: 0,
+        street: '',
+        postCode: ''
       }
     ],
   });
@@ -57,8 +53,8 @@ const SignUp: React.FC = () => {
     e.preventDefault();
 
     
-    if (userData.Password !== userData.ConfirmPassword) {
-      setMessage(getTranslation(language, 'Passwords do not match. Please try again.'));
+    if (userData.password !== userData.confirmPassword) {
+      setMessage('Passwords do not match. Please try again.');
       return;
     }
 
@@ -72,75 +68,75 @@ const SignUp: React.FC = () => {
       {message && <Typography className={styles.message} variant="body2">{message}</Typography>}
       <form onSubmit={handleSignUp} className={styles.signInForm}>
         <TextField
-          label={getTranslation(language, 'Name')}
+          label={'First name'}
           name="FirstName"
-          value={userData.FirstName}
+          value={userData.firstName}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
-          label={getTranslation(language, 'Name')}
+          label={'Last name'}
           name="LastName"
-          value={userData.LastName}
+          value={userData.lastName}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
-          label={getTranslation(language, 'Email')}
+          label={'Email'}
           name="email"
-          value={userData.Email}
+          value={userData.email}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
-          label={getTranslation(language, 'Password')}
+          label={'Password'}
           type="password"
           name="password"
-          value={userData.Password}
+          value={userData.password}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
-          label={getTranslation(language, 'Confirm password')}
+          label={'Confirm password'}
           type="password"
           name="confirmPassword"
-          value={userData.ConfirmPassword}
+          value={userData.confirmPassword}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
-          label={getTranslation(language, 'Admin Code (optional)')}
+          label={'Admin Code (optional)'}
           name="adminCode"
           type="password"
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
-          label={getTranslation(language, 'House Number')}
+          label={'House Number'}
           name={`Addresses.HouseNumber`}
-          value={userData.Addresses[0].HouseNumber}
+          value={userData.addresses[0].houseNumber}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
-          label={getTranslation(language, 'Street')}
+          label={'Street'}
           name={`Addresses.Street`}
-          value={userData.Addresses[0].Street || ''}
+          value={userData.addresses[0].street || ''}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
-          label={getTranslation(language, 'Post Code')}
+          label={'Post Code'}
           name={`Addresses.PostCode`}
-          value={userData.Addresses[0].PostCode}
+          value={userData.addresses[0].postCode}
           onChange={handleInputChange}
           className={styles.textField}
         />
-        <Button type='submit' className={styles.primaryButton}>{getTranslation(language, 'sign up')}</Button>
+        <Button type='submit' className={styles.primaryButton}>{'sign up'}</Button>
       </form>
 
       <Link to={'/signin'} className={styles.linkText}>
-        <Typography className={styles.textNotInForm} >{getTranslation(language, 'Already have an account? Sign in')}</Typography>
+        <Typography className={styles.textNotInForm} >{'Already have an account? Sign in'}</Typography>
       </Link>
     </Container>
   );

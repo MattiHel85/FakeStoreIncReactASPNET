@@ -9,11 +9,7 @@ import styles from '../styles/styles.module.css';
 import { AppDispatch } from '../redux/store';
 import { loginUser } from '../redux/slices/authSlice';
 
-import { useLanguage } from '../contextAPI/LanguageContext';
-import { getTranslation } from '../contextAPI/translations/TranslationService';
-
 const SignIn: React.FC = ( ) => {
-  const {language} = useLanguage();
   const [signInData, setSignInData] = useState({
     email: '',
     password: ''
@@ -47,27 +43,27 @@ const handleSignInChange = (e: any) => {
         className={styles.signInForm}
       >
         <TextField
-          label={getTranslation(language, 'Email')}
+          label={'Email'}
           name="email" 
           value={signInData.email}
           onChange={handleSignInChange} 
           className={styles.textField}
         />
         <TextField
-          label={getTranslation(language, 'Password')}
+          label={'Password'}
           type="password"
           name="password" 
           value={signInData.password}
           onChange={handleSignInChange} 
           className={styles.textField}
         />
-        <Button type='submit' className={styles.primaryButton}>{getTranslation(language, 'sign in')}</Button>
+        <Button type='submit' className={styles.primaryButton}>{'sign in'}</Button>
       </form>
         <Link to={'/forgotpassword'} className={styles.linkText}>        
-          <Typography className={styles.textNotInForm}>{getTranslation(language, 'Forgot your password')}?</Typography>
+          <Typography className={styles.textNotInForm}>{'Forgot your password'}?</Typography>
         </Link>
         <Link to={'/signup'} className={styles.linkText}>
-          <Typography className={styles.textNotInForm} >{getTranslation(language, 'No account? Sign up')}</Typography>
+          <Typography className={styles.textNotInForm} >{'No account? Sign up'}</Typography>
         </Link>
     </Container>
   )

@@ -17,13 +17,13 @@ const UserCard: React.FC<UserCardProps> = ({ user}) => {
             <Card key={Number(user?.id)} className={styles.card}>
                 <CardContent>
                     <Typography variant="h5">
-                        {user?.FirstName} {user?.LastName}
+                        {user?.firstName} {user?.lastName}
                     </Typography>
                     <Typography>
-                        {user?.Role}
+                        {user?.role}
                     </Typography>
                     <Typography>
-                        {user?.Email}
+                        {user?.email}
                     </Typography>
                 </CardContent>
             </Card>   

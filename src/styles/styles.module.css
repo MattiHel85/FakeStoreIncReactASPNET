@@ -21,7 +21,7 @@
   margin: 5px auto;
 }
 .cfmContainer .form .primaryButton {
-  background-color: rgb(0, 209, 255);
+  background-color: rgb(0, 0, 0);
   color: white;
   width: 40%;
   margin: 1em auto;
@@ -72,7 +72,7 @@
   }
 }
 .cfmContainer .messageBox .secondaryButton {
-  background-color: rgb(0, 160, 255);
+  background-color: rgb(0, 0, 0);
   color: white;
   width: 40%;
   margin: auto;
@@ -113,7 +113,7 @@
   }
 }
 .productForm .primaryButton {
-  background-color: rgb(0, 209, 255);
+  background-color: rgb(0, 0, 0);
   color: white;
   width: 40%;
   margin: 1em auto;
@@ -154,7 +154,7 @@
 }
 .adminContainer .icon {
   font-size: 10em;
-  color: rgb(0, 209, 255);
+  color: rgb(0, 0, 0);
 }
 @media (max-width: 600px) {
   .adminContainer .icon {
@@ -168,7 +168,7 @@
   margin: 5px;
 }
 .adminContainer .primaryButton {
-  background-color: rgb(0, 209, 255);
+  background-color: rgb(0, 0, 0);
   color: white;
   width: 150px;
   margin: auto;
@@ -185,7 +185,7 @@
   width: 90%;
   margin: auto;
   margin-bottom: 2em;
-  border: 0.5em solid rgb(0, 209, 255);
+  border: 0.5em solid rgb(0, 0, 0);
   border-radius: 25px;
   padding: 10px;
 }
@@ -209,7 +209,7 @@
   margin: 2em;
 }
 .adminInnerContainer .buttonGroup .primaryButton {
-  background-color: rgb(0, 209, 255);
+  background-color: rgb(0, 0, 0);
   color: white;
   width: 150px;
   margin: auto;
@@ -227,7 +227,7 @@
   }
 }
 .adminInnerContainer .buttonGroup .secondaryButton {
-  background-color: rgb(0, 160, 255);
+  background-color: rgb(0, 0, 0);
   color: white;
   width: 150px;
   margin: auto;
@@ -307,7 +307,7 @@
 .potmContainer {
   width: 80%;
   margin: 2em auto;
-  border: 2px solid rgb(0, 209, 255);
+  border: 2px solid rgb(0, 0, 0);
   border-radius: 25px;
   box-shadow: 0px 0px 15px 0px rgba(0, 209, 255, 0.5);
   padding: 2em;
@@ -400,7 +400,7 @@
   }
 }
 .potmContainer .potmBox .potmBoxOne .potmBoxThree .potmBoxFour .potmPrimaryButton {
-  background-color: rgb(0, 209, 255);
+  background-color: rgb(0, 0, 0);
   color: white;
   min-width: 10px;
   margin: 0 auto;
@@ -467,7 +467,7 @@
   }
 }
 .productsContainer .searchButton {
-  background-color: rgb(0, 160, 255);
+  background-color: rgb(0, 0, 0);
   color: white;
   width: 25%;
   margin: auto;
@@ -495,7 +495,7 @@
   }
 }
 .productsContainer .productCard .primaryCardButton {
-  background-color: rgb(0, 209, 255);
+  background-color: rgb(0, 0, 0);
   color: white;
   width: 150px;
   font-weight: 600;
@@ -527,7 +527,7 @@
   }
 }
 .adminButtonsBox .adminButtons .updateButton {
-  background-color: rgb(0, 160, 255);
+  background-color: rgb(0, 0, 0);
   color: white;
   width: 150px;
   margin: auto;
@@ -615,7 +615,7 @@
 }
 
 .primaryButton {
-  background-color: rgb(0, 209, 255);
+  background-color: rgb(0, 0, 0);
   color: white;
   width: 150px;
   margin: auto;
@@ -633,7 +633,7 @@
 }
 
 .secondaryButton {
-  background-color: rgb(0, 160, 255);
+  background-color: rgb(0, 0, 0);
   color: white;
   width: 150px;
   margin: auto;
@@ -691,7 +691,7 @@
   margin: 0.75em auto;
 }
 .signInContainer .signInForm .primaryButton {
-  background-color: rgb(0, 209, 255);
+  background-color: rgb(0, 0, 0);
   color: white;
   min-width: 10em;
   margin: auto;
@@ -721,7 +721,7 @@
   justify-content: space-around;
 }
 .userContainer .primaryButton {
-  background-color: rgb(0, 209, 255);
+  background-color: rgb(0, 0, 0);
   color: white;
   width: 150px;
   margin: auto;
@@ -731,7 +731,7 @@
   padding: 0.5em;
 }
 .userContainer .updateButton {
-  background-color: rgb(0, 160, 255);
+  background-color: rgb(0, 0, 0);
   color: white;
   width: 150px;
   margin: auto;
@@ -778,7 +778,7 @@
 }
 
 .languageButton {
-  background-color: rgb(0, 209, 255);
+  background-color: rgb(0, 0, 0);
   color: white;
   width: 70%;
   margin: 1em auto;

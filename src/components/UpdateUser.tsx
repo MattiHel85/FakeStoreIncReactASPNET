@@ -8,20 +8,16 @@ import { UpdateUserProps } from '../types/User';
 import { User } from '../types/User';
 import styles from '../styles/styles.module.css';
 
-import { useLanguage } from '../contextAPI/LanguageContext';
-import { getTranslation } from '../contextAPI/translations/TranslationService';
-
 const UpdateUser: React.FC<UpdateUserProps> = ({ user, setUser }) => {
-  const {language} = useLanguage();
   const [userData, setUserData] = useState<User>({
     id: undefined,
-    Role: '',  // Corrected property name from FirstName to Role
-    FirstName: '',
-    LastName: '',
-    Email: '',
-    Password: '',
-    PhoneNumber: '',
-    Addresses: [],
+    role: '',  // Corrected property name from FirstName to Role
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    phoneNumber: '',
+    addresses: [],
 });
 
 
@@ -30,12 +26,12 @@ const UpdateUser: React.FC<UpdateUserProps> = ({ user, setUser }) => {
       setUserData(prevData => ({
         ...prevData,
         id: user.id || undefined,
-        FirstName: user.FirstName || '',
-        LastName: user.LastName || '',
-        Email: user.Email || '',
-        Password: user.Password || '',
-        Role: user.Role || 'Customer',
-        Addresses: user.Addresses || [],
+        FirstName: user.firstName || '',
+        LastName: user.lastName || '',
+        Email: user.email || '',
+        Password: user.password || '',
+        Role: user.role || 'Customer',
+        Addresses: user.addresses || [],
       }));
     }
   }, [user]);
@@ -74,68 +70,68 @@ const UpdateUser: React.FC<UpdateUserProps> = ({ user, setUser }) => {
     <Box className={styles.signInContainer}>
       <form onSubmit={handleUpdateUser} className={styles.signInForm}>
         <TextField
-          label={getTranslation(language, 'Name')}
+          label={'First name'}
           name="FirstName"
-          value={userData.FirstName}
+          value={userData.firstName}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
-          label={getTranslation(language, 'Name')}
+          label={'Last name'}
           name="LastName"
-          value={userData.LastName}
+          value={userData.lastName}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
-          label={getTranslation(language, 'Email')}
+          label={'Email'}
           name="Email"
-          value={userData.Email}
+          value={userData.email}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
-          label={getTranslation(language, 'Password')}
+          label={'Password'}
           type="password"
           name="Password"
-          value={userData.Password}
+          value={userData.password}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
-          label={getTranslation(language, 'Admin Code (optional)')}
+          label={'Admin Code (optional)'}
           name="adminCode"
           type="password"
           onChange={handleInputChange}
           className={styles.textField}
         />
-        {userData.Addresses.map((address, index) => (
+        {userData.addresses.map((address, index) => (
           <div key={index}>
             <TextField
-              label={getTranslation(language, 'House Number')}
+              label={'House Number'}
               name={`Addresses[${index}].HouseNumber`}
-              value={address.HouseNumber}
+              value={address.houseNumber}
               onChange={handleInputChange}
               className={styles.textField}
             />
             <TextField
-              label={getTranslation(language, 'Street')}
+              label={'Street'}
               name={`Addresses[${index}].Street`}
-              value={address.Street || ''}
+              value={address.street || ''}
               onChange={handleInputChange}
               className={styles.textField}
             />
             <TextField
-              label={getTranslation(language, 'Post Code')}
+              label={'Post Code'}
               name={`Addresses[${index}].PostCode`}
-              value={address.PostCode}
+              value={address.postCode}
               onChange={handleInputChange}
               className={styles.textField}
             />
           </div>
         ))}
         <Button type='submit' className={styles.primaryButton}>
-          {getTranslation(language, 'Update user')}
+          {'Update user'}
         </Button>
       </form>
       

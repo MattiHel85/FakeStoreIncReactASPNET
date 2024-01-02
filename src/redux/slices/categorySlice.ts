@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk} from '@reduxjs/toolkit'
 import { Category, CategoryState } from '../../types/Category'
+import { Guid } from 'guid-typescript'
 
 export const initialState: CategoryState = {
   categories: [],
@@ -10,6 +11,15 @@ export const initialState: CategoryState = {
 export const fetchCategories = createAsyncThunk('categories/fetchCategories', async () => {
   try {
       const res = await fetch('https://fakestoreinc.azurewebsites.net/api/v1/categorys')
+      const data = await res.json()
+      return data as Category[]
+  } catch (err) {
+      throw err;
+  }
+})
+export const fetchCategoryById = createAsyncThunk('categories/fetchCategories', async (categoryId: Guid) => {
+  try {
+      const res = await fetch(`https://fakestoreinc.azurewebsites.net/api/v1/categorys/${categoryId}`)
       const data = await res.json()
       return data as Category[]
   } catch (err) {

@@ -5,25 +5,20 @@ import { AppDispatch } from '../redux/store';
 import { createProduct } from '../redux/slices/productSlice';
 import { fetchCategories } from '../redux/slices/categorySlice';
 import { Typography, Button, TextField, Select, MenuItem } from '@mui/material';
-import { ProductData } from '../types/Product';
+import { AddProductData } from '../types/Product';
 import styles from '../styles/styles.module.css'
 import { Category } from '../types/Category';
 
-import { useLanguage } from '../contextAPI/LanguageContext';
-import { getTranslation } from '../contextAPI/translations/TranslationService';
-
-
 const AddProduct: React.FC = () => {
-  const {language} = useLanguage();
   const dispatch: AppDispatch = useDispatch(); 
   const categories = useSelector((state: RootState) => state.categories.categories);
-  const [productData, setProductData] = useState<ProductData>({
-    id: 0,
-    title: '',
-    description: '',
-    price: 0,
-    images: [],
-    categoryId: 0
+  const [productData, setProductData] = useState<AddProductData>({
+    ProductName:'',
+    Description: '',
+    Image: [],
+    Price: '',
+    StockQuantity: 0,
+    CategoryId: 0
   });
 
   useEffect(() => {
@@ -36,71 +31,71 @@ const AddProduct: React.FC = () => {
   };
 
   const handleCategoryChange = (event: any) => {
-    setProductData({ ...productData, categoryId: event.target.value });
+    setProductData({ ...productData, CategoryId: event.target.value });
   };
 
   const handleAddProduct = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(createProduct(productData));
     setProductData({
-      id: 0,
-      title: '',
-      description: '',
-      price: 0,
-      images: [],
-      categoryId: 0
+      ProductName:'',
+      Description: '',
+      Image: [],
+      Price: '',
+      StockQuantity: 0,
+      CategoryId: 0
     });
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const imageUrls = e.target.value.split(',');
-    setProductData({ ...productData, images: imageUrls });
+    setProductData({ ...productData, Image: imageUrls });
   };
 
   return (
     <>
-      <Typography variant='h4' sx={{ textAlign: 'center', my: '2.5em' }}>{getTranslation(language, 'Add product')}</Typography>
+      <Typography variant='h4' sx={{ textAlign: 'center', my: '2.5em' }}>{'Add product'}</Typography>
         <form className={styles.productForm} onSubmit={handleAddProduct}>
           <TextField
-            label={getTranslation(language, 'Name')}
+            label={'Name'}
             name='title'
-            value={productData.title}
+            value={productData.ProductName}
             onChange={handleInputChange}
             className={styles.textField}
           />
           <TextField
-            label={getTranslation(language, 'Description')}
+            label={'Description'}
             name='description'
-            value={productData.description}
+            value={productData.Description}
             onChange={handleInputChange}
             className={styles.textField}
           />
           <TextField
-            label={getTranslation(language, 'Price')}
+            label={'Price'}
             type='number'
             name='price'
-            value={productData.price}
+            value={productData.Price}
             onChange={handleInputChange}
             className={styles.textField}
           />
           <Select
-            label={getTranslation(language, 'Category')}
+            label={'Category'}
             name='categoryId'
-            value={productData.categoryId}
+            value={productData.CategoryId}
             onChange={handleCategoryChange}
             className={styles.textField}
           >
-            <MenuItem value={0}>{getTranslation(language, 'Select Category')}</MenuItem>
+            <MenuItem value={0}>{'Select Category'}</MenuItem>
             {categories.map((category: Category) => (
               <MenuItem key={category.id} value={category.id}>
-                {category.name}
+                {category.categoryName}
               </MenuItem>
             ))}
           </Select>
           <TextField
-            label={getTranslation(language, 'Image URLs (comma-separated)')}
+            label={'Image URLs (comma-separated)'}
             name='images'
-            value={productData.images.join(',')} 
+            value={productData.Image.join(',')} 
             onChange={handleImageChange}
             className={styles.textField}
           />
@@ -108,7 +103,7 @@ const AddProduct: React.FC = () => {
             type="submit"
             className={styles.primaryButton}
           >
-            {getTranslation(language, 'Add product')}
+            {'Add product'}
           </Button>
         </form>
     </>

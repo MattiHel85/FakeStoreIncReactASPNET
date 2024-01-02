@@ -4,17 +4,13 @@ import { RootState } from '../redux/slices/rootSlice';
 import { Typography, Container, Button, TextField, Box } from "@mui/material";
 import styles from '../styles/styles.module.css';
 
-import { useLanguage } from '../contextAPI/LanguageContext';
-import { getTranslation } from '../contextAPI/translations/TranslationService';
-
 const ContactForm: React.FC = () => {
-  const { language } = useLanguage()
   const user = useSelector((state: RootState) => state.auth.user);
   const [formData, setFormData] = useState({
-    FirstName: user ? user.FirstName : '',
-    LastName: user ? user.LastName : '',
-    Email: user ? user.Email : '',
-    Message: '',
+    firstName: user ? user.firstName : '',
+    lastName: user ? user.lastName : '',
+    email: user ? user.email : '',
+    message: '',
 });
   const [showMessage, setShowMessage] = useState(false)
 
@@ -30,10 +26,10 @@ const ContactForm: React.FC = () => {
     e.preventDefault();
 
     setFormData({
-      FirstName: user ? user.FirstName : '',
-      LastName: user ? user.LastName : '',
-      Email: user ? user.Email : '',
-      Message: '',
+      firstName: user ? user.firstName : '',
+      lastName: user ? user.lastName : '',
+      email: user ? user.email : '',
+      message: '',
     });
 
     setShowMessage(true)
@@ -47,34 +43,34 @@ const ContactForm: React.FC = () => {
         className={styles.form}
       >
         <TextField
-          label={getTranslation(language, 'Name')}
-          name="FirstName"
-          value={formData.FirstName}
+          label={'First name'}
+          name="firstName"
+          value={formData.firstName}
           onChange={handleInputChange}
           required
           className={styles.textField}
         />
         <TextField
-          label={getTranslation(language, 'Name')}
-          name="LastName"
-          value={formData.LastName}
+          label={'Last name'}
+          name="lastName"
+          value={formData.lastName}
           onChange={handleInputChange}
           required
           className={styles.textField}
         />
         <TextField
-          label={getTranslation(language, 'Email')}
-          name="Email"
-          value={formData.Email}
+          label={'Email'}
+          name="email"
+          value={formData.email}
           onChange={handleInputChange}
           required
           type="email"
           className={styles.textField}
         />
         <TextField
-          label={getTranslation(language, 'Message')}
-          name="Message"
-          value={formData.Message}
+          label={'Message'}
+          name="message"
+          value={formData.message}
           onChange={handleInputChange}
           required
           multiline
@@ -85,19 +81,19 @@ const ContactForm: React.FC = () => {
           type="submit"
           className={styles.primaryButton}
         >
-          {getTranslation(language, 'Submit')}
+          {'Submit'}
         </Button>
       </form>
       {
         showMessage && 
         <Box className={styles.messageBox}>
             <Typography className={styles.messageHeader} variant='h6'>
-                {getTranslation(language, 'Your message could not be sent')}
+                {'Your message could not be sent'}
             </Typography>
             <Typography className={styles.messageBody} variant='body1'>
-                {getTranslation(language, 'This is because the API does not currently support this feature')}
+                {'This is because the API does not currently support this feature'}
             </Typography>
-            <Button className={styles.secondaryButton} onClick={() => setShowMessage(false)}>{getTranslation(language, 'Close message')}</Button>
+            <Button className={styles.secondaryButton} onClick={() => setShowMessage(false)}>{'Close message'}</Button>
         </ Box>
       }
     </Container>
