@@ -11,13 +11,13 @@ import styles from '../styles/styles.module.css';
 const UpdateUser: React.FC<UpdateUserProps> = ({ user, setUser }) => {
   const [userData, setUserData] = useState<User>({
     id: undefined,
-    role: '',  // Corrected property name from FirstName to Role
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    phoneNumber: '',
-    addresses: [],
+    Role: '',  // Corrected property name from FirstName to Role
+    FirstName: '',
+    LastName: '',
+    Email: '',
+    Password: '',
+    PhoneNumber: '',
+    Addresses: [],
 });
 
 
@@ -26,12 +26,12 @@ const UpdateUser: React.FC<UpdateUserProps> = ({ user, setUser }) => {
       setUserData(prevData => ({
         ...prevData,
         id: user.id || undefined,
-        FirstName: user.firstName || '',
-        LastName: user.lastName || '',
-        Email: user.email || '',
-        Password: user.password || '',
-        Role: user.role || 'Customer',
-        Addresses: user.addresses || [],
+        FirstName: user.FirstName || '',
+        LastName: user.LastName || '',
+        Email: user.Email || '',
+        Password: user.Password || '',
+        Role: user.Role || 'Customer',
+        Addresses: user.Addresses || [],
       }));
     }
   }, [user]);
@@ -72,21 +72,21 @@ const UpdateUser: React.FC<UpdateUserProps> = ({ user, setUser }) => {
         <TextField
           label={'First name'}
           name="FirstName"
-          value={userData.firstName}
+          value={userData.FirstName}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
           label={'Last name'}
           name="LastName"
-          value={userData.lastName}
+          value={userData.LastName}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
           label={'Email'}
           name="Email"
-          value={userData.email}
+          value={userData.Email}
           onChange={handleInputChange}
           className={styles.textField}
         />
@@ -94,7 +94,7 @@ const UpdateUser: React.FC<UpdateUserProps> = ({ user, setUser }) => {
           label={'Password'}
           type="password"
           name="Password"
-          value={userData.password}
+          value={userData.Password}
           onChange={handleInputChange}
           className={styles.textField}
         />
@@ -105,26 +105,26 @@ const UpdateUser: React.FC<UpdateUserProps> = ({ user, setUser }) => {
           onChange={handleInputChange}
           className={styles.textField}
         />
-        {userData.addresses.map((address, index) => (
+        {userData.Addresses.map((address, index) => (
           <div key={index}>
             <TextField
               label={'House Number'}
               name={`Addresses[${index}].HouseNumber`}
-              value={address.houseNumber}
+              value={address.HouseNumber}
               onChange={handleInputChange}
               className={styles.textField}
             />
             <TextField
               label={'Street'}
               name={`Addresses[${index}].Street`}
-              value={address.street || ''}
+              value={address.Street || ''}
               onChange={handleInputChange}
               className={styles.textField}
             />
             <TextField
               label={'Post Code'}
               name={`Addresses[${index}].PostCode`}
-              value={address.postCode}
+              value={address.PostCode}
               onChange={handleInputChange}
               className={styles.textField}
             />

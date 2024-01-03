@@ -27,14 +27,14 @@ describe('product reducer', () => {
         const mockProducts = [
             {
                 id: 1,
-                CreationAt: '2023-09-20T10:00:00Z',
-                UpdatedAt: '2023-09-20T10:00:00Z',
-                ProductName: 'Product 1',
-                Description: 'Description for Product 1',
-                Image: ['image1.jpg', 'image2.jpg'],
-                Price: '10',
-                StockQuantity: 1,
-                CategoryId: 1  
+                creationAt: '2023-09-20T10:00:00Z',
+                updatedAt: '2023-09-20T10:00:00Z',
+                productName: 'Product 1',
+                description: 'Description for Product 1',
+                image: ['image1.jpg', 'image2.jpg'],
+                price: '10',
+                stockQuantity: 1,
+                categoryId: 1  
             }
         ];
         
@@ -68,14 +68,14 @@ describe('product reducer', () => {
         const mockProducts = [
             {
                 id: 1,
-                CreationAt: '2023-09-20T10:00:00Z',
-                UpdatedAt: '2023-09-20T10:00:00Z',
-                ProductName: 'Product 1',
-                Description: 'Description for Product 1',
-                Image: ['image1.jpg', 'image2.jpg'],
-                Price: '10',
-                StockQuantity: 1,
-                CategoryId: 1  
+                creationAt: '2023-09-20T10:00:00Z',
+                updatedAt: '2023-09-20T10:00:00Z',
+                productName: 'Product 1',
+                description: 'Description for Product 1',
+                image: ['image1.jpg', 'image2.jpg'],
+                price: '10',
+                stockQuantity: 1,
+                categoryId: 1  
             }
         ];
 
@@ -109,14 +109,14 @@ describe('product reducer', () => {
       const mockProducts = [
         {
             id: 1,
-            CreationAt: '2023-09-20T10:00:00Z',
-            UpdatedAt: '2023-09-20T10:00:00Z',
-            ProductName: 'Product 1',
-            Description: 'Description for Product 1',
-            Image: ['image1.jpg', 'image2.jpg'],
-            Price: '10',
-            StockQuantity: 1,
-            CategoryId: 1  
+            creationAt: '2023-09-20T10:00:00Z',
+            updatedAt: '2023-09-20T10:00:00Z',
+            productName: 'Product 1',
+            description: 'Description for Product 1',
+            image: ['image1.jpg', 'image2.jpg'],
+            price: '10',
+            stockQuantity: 1,
+            categoryId: 1  
         }
       ];
 
@@ -149,14 +149,14 @@ describe('product reducer', () => {
 
         const mockProduct = [{
                 id: 1,
-                CreationAt: '2023-09-20T10:00:00Z',
-                UpdatedAt: '2023-09-20T10:00:00Z',
-                ProductName: 'Product 1',
-                Description: 'Description for Product 1',
-                Image: ['image1.jpg', 'image2.jpg'],
-                Price: '10',
-                StockQuantity: 1,
-                CategoryId: 1  
+                creationAt: '2023-09-20T10:00:00Z',
+                updatedAt: '2023-09-20T10:00:00Z',
+                productName: 'Product 1',
+                description: 'Description for Product 1',
+                image: ['image1.jpg', 'image2.jpg'],
+                price: '10',
+                stockQuantity: 1,
+                categoryId: 1  
             }];
         
         const action = fetchProductById.fulfilled(mockProduct, '', 1);
@@ -193,24 +193,24 @@ describe('product reducer', () => {
         const mockProduct =         
             {
                 id: 1,
-                CreationAt: '2023-09-20T10:00:00Z',
-                UpdatedAt: '2023-09-20T10:00:00Z',
-                ProductName: 'Product 1',
-                Description: 'Description for Product 1',
-                Image: ['image1.jpg', 'image2.jpg'],
-                Price: '10',
-                StockQuantity: 1,
-                CategoryId: 1  
+                creationAt: '2023-09-20T10:00:00Z',
+                updatedAt: '2023-09-20T10:00:00Z',
+                productName: 'Product 1',
+                description: 'Description for Product 1',
+                image: ['image1.jpg', 'image2.jpg'],
+                price: '10',
+                stockQuantity: 1,
+                categoryId: 1  
             }
         ;
         
         const mockAddProductData: AddProductData = {
-            ProductName: 'Product 1',
-            Description: 'Description for Product 1',
-            Image: ['image1.jpg', 'image2.jpg'],
-            Price: '10',
-            StockQuantity: 1,
-            CategoryId: 1  
+            productName: 'Product 1',
+            description: 'Description for Product 1',
+            image: ['image1.jpg', 'image2.jpg'],
+            price: '10',
+            stockQuantity: 1,
+            categoryId: 1  
         }
 
         const action = createProduct.fulfilled(mockProduct, '', mockAddProductData );
@@ -227,12 +227,12 @@ describe('product reducer', () => {
         const error = new Error('Rejected')
 
         const mockAddProductData: AddProductData = {
-            ProductName: 'Product 1',
-            Description: 'Description for Product 1',
-            Image: ['image1.jpg', 'image2.jpg'],
-            Price: '10',
-            StockQuantity: 1,
-            CategoryId: 1  
+            productName: 'Product 1',
+            description: 'Description for Product 1',
+            image: ['image1.jpg', 'image2.jpg'],
+            price: '10',
+            stockQuantity: 1,
+            categoryId: 1  
         }
 
         const state = productSlice(initialState, createProduct.rejected(error, '', mockAddProductData))
@@ -255,23 +255,23 @@ describe('product reducer', () => {
         const mockProduct =       
             {
                 id: 1,
-                CreationAt: '2023-09-20T10:00:00Z',
-                UpdatedAt: '2023-09-20T10:00:00Z',
-                ProductName: 'Product 1',
-                Description: 'Description for Product 1',
-                Image: ['image1.jpg', 'image2.jpg'],
-                Price: '10',
-                StockQuantity: 1,
-                CategoryId: 1  
+                creationAt: '2023-09-20T10:00:00Z',
+                updatedAt: '2023-09-20T10:00:00Z',
+                productName: 'Product 1',
+                description: 'Description for Product 1',
+                image: ['image1.jpg', 'image2.jpg'],
+                price: '10',
+                stockQuantity: 1,
+                categoryId: 1   
             };
 
         const mockAddProductData: AddProductData = {
-            ProductName: 'Product 1',
-            Description: 'Description for Product 1',
-            Image: ['image1.jpg', 'image2.jpg'],
-            Price: '10',
-            StockQuantity: 1,
-            CategoryId: 1  
+            productName: 'Product 1',
+            description: 'Description for Product 1',
+            image: ['image1.jpg', 'image2.jpg'],
+            price: '10',
+            stockQuantity: 1,
+            categoryId: 1  
         }
 
         const createAction = createProduct.fulfilled(mockProduct, '', mockAddProductData, '' );
@@ -280,12 +280,12 @@ describe('product reducer', () => {
 
         const mockUpdateProductData: ProductData = {
             id: 1,
-            ProductName: 'Mock',
-            Description: 'Mock',
-            Image: ['Mock'],
-            Price: '10',
-            StockQuantity: 1,
-            CategoryId: 1 
+            productName: 'Mock',
+            description: 'Mock',
+            image: ['Mock'],
+            price: '10',
+            stockQuantity: 1,
+            categoryId: 1 
         }
         
         createProduct(mockAddProductData)
@@ -305,23 +305,23 @@ describe('product reducer', () => {
 
         const mockProduct = {
             id: 1,
-            CreationAt: '2023-09-20T10:00:00Z',
-            UpdatedAt: '2023-09-20T10:00:00Z',
-            ProductName: 'Product 1',
-            Description: 'Description for Product 1',
-            Image: ['image1.jpg', 'image2.jpg'],
-            Price: '10',
-            StockQuantity: 1,
-            CategoryId: 1  
+            creationAt: '2023-09-20T10:00:00Z',
+            updatedAt: '2023-09-20T10:00:00Z',
+            productName: 'Product 1',
+            description: 'Description for Product 1',
+            image: ['image1.jpg', 'image2.jpg'],
+            price: '10',
+            stockQuantity: 1,
+            categoryId: 1  
         };
 
         const mockAddProductData: AddProductData = {
-            ProductName: 'Product 1',
-            Description: 'Description for Product 1',
-            Image: ['image1.jpg', 'image2.jpg'],
-            Price: '10',
-            StockQuantity: 1,
-            CategoryId: 1  
+            productName: 'Product 1',
+            description: 'Description for Product 1',
+            image: ['image1.jpg', 'image2.jpg'],
+            price: '10',
+            stockQuantity: 1,
+            categoryId: 1  
         }
 
         const createAction = createProduct.fulfilled(mockProduct, '', mockAddProductData, '' );
@@ -330,12 +330,12 @@ describe('product reducer', () => {
 
         const mockUpdateProductData: ProductData = {
             id: 1,
-            ProductName: 'Product 1',
-            Description: 'Description for Product 1',
-            Image: ['image1.jpg', 'image2.jpg'],
-            Price: '10',
-            StockQuantity: 1,
-            CategoryId: 1  
+            productName: 'Product 1',
+            description: 'Description for Product 1',
+            image: ['image1.jpg', 'image2.jpg'],
+            price: '10',
+            stockQuantity: 1,
+            categoryId: 1  
         }
 
         createProduct(mockAddProductData)
@@ -363,23 +363,23 @@ describe('product reducer', () => {
         const mockProduct =       
             {
                 id: 1,
-                CreationAt: '2023-09-20T10:00:00Z',
-                UpdatedAt: '2023-09-20T10:00:00Z',
-                ProductName: 'Product 1',
-                Description: 'Description for Product 1',
-                Image: ['image1.jpg', 'image2.jpg'],
-                Price: '10',
-                StockQuantity: 1,
-                CategoryId: 1  
+                creationAt: '2023-09-20T10:00:00Z',
+                updatedAt: '2023-09-20T10:00:00Z',
+                productName: 'Product 1',
+                description: 'Description for Product 1',
+                image: ['image1.jpg', 'image2.jpg'],
+                price: '10',
+                stockQuantity: 1,
+                categoryId: 1  
             };
 
         const mockAddProductData: AddProductData = {
-            ProductName: 'Product 1',
-            Description: 'Description for Product 1',
-            Image: ['image1.jpg', 'image2.jpg'],
-            Price: '10',
-            StockQuantity: 1,
-            CategoryId: 1  
+            productName: 'Product 1',
+            description: 'Description for Product 1',
+            image: ['image1.jpg', 'image2.jpg'],
+            price: '10',
+            stockQuantity: 1,
+            categoryId: 1  
         }        
         
         const mockProductId = '1'

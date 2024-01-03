@@ -113,7 +113,7 @@ function TopAppBar() {
                 <>
                     <IconButton onClick={handleOpenNavMenu} sx={{ p: 0, color: 'black', mr: '0.05em' }}>
                         <PersonIcon sx={{ fontSize: {xs: '1em', md: '1.5em'}}} />
-                        <Typography sx={{mr: '.25em',fontSize: {xs: '.5em', md: '.75em'}}} >{'Hello'}, {user?.firstName }</Typography>
+                        <Typography sx={{mr: '.25em',fontSize: {xs: '.5em', md: '.75em'}}} >{'Hello'}, {user?.FirstName }</Typography>
                     </IconButton>
                     <Menu
                       sx={{ mt: '45px'}}
@@ -137,7 +137,7 @@ function TopAppBar() {
                         }}
                       >
                         {
-                          user?.role === 'admin' && 
+                          user?.Role === 'admin' && 
                           <Link to={'/admin'} style={{textDecoration: 'none', color: 'black'}}>
                             <Typography sx={{mr: '.25em',fontSize: {xs: '1rem', md: '1.5rem'}}} >{'Admin'} </Typography>
                           </Link>

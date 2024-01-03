@@ -16,11 +16,11 @@ export interface LoginPayload {
 
 export interface UserProfile {
     id?: Guid | number;
-    role: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    password?: string;
-    phoneNumber: string;
-    addresses?: Address[];
+    Role: string;
+    FirstName: string;
+    LastName: string;
+    Email: string;
+    Password: string;
+    PhoneNumber: string;
+    Addresses: Address[];
 }

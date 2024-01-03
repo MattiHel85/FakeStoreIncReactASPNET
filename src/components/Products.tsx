@@ -55,8 +55,8 @@ const Products: React.FC = () => {
   }
 
   let filteredProducts = products.filter((filteredProduct) =>
-    (filteredProduct.ProductName?.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (selectedCategory ? filteredProduct.CategoryId === selectedCategory : true))
+    (filteredProduct.productName?.toLowerCase().includes(searchTerm.toLowerCase()) &&
+      (selectedCategory ? filteredProduct.categoryId === selectedCategory : true))
   );
 
 

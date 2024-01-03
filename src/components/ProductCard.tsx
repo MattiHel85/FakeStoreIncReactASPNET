@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from '../redux/store';
-import { Guid } from "guid-typescript";
 import { ProductCardProps } from "../types/Product";
 import { fetchCategoryById } from "../redux/slices/categorySlice";
 import { Card, CardContent, CardMedia, Typography, Button, CardActions } from '@mui/material';
@@ -12,7 +11,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, items, onAddToCart})
     const dispatch: AppDispatch = useDispatch(); 
     const navigate = useNavigate();
     const id = product?.id;
-    const firstImage = product?.Image?.[0];
+    const firstImage = product?.image?.[0];
     const [categoryName, setCategoryName] = useState<string | undefined>(undefined);
     const navigateToProduct = () => {
         navigate(`/products/${id}`)
@@ -20,9 +19,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, items, onAddToCart})
 
     useEffect(() => {
         const fetchCategory = async () => {
-          if (product && product.CategoryId) {
+          if (product && product.categoryId) {
             try {
-              const response = await dispatch(fetchCategoryById(product.CategoryId));
+              const response = await dispatch(fetchCategoryById(product.categoryId));
               const categoryData = response.payload as { name: string };
               setCategoryName(categoryData.name);
             } catch (error) {
@@ -54,10 +53,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, items, onAddToCart})
                 />
                 <CardContent>
                     <Typography variant="h5" sx={{marginBottom: '1.5em'}}>
-                        {product.ProductName}
+                        {product.productName}
                     </Typography>
                     <Typography sx={{marginBottom: '1em'}}>
-                        {product.Description}
+                        {product.description}
                     </Typography>
                     <Typography variant="body1" sx={{marginBottom: '1.5em'}}>
                     {'Category'}: {categoryName}
@@ -72,7 +71,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, items, onAddToCart})
                     }}
                 >
                     <Typography variant="h5">
-                        €{product.Price}
+                        €{product.price}
                     </Typography>
 
                     <Button 

@@ -64,7 +64,7 @@ const AdminPanel: React.FC = () => {
   return (
     <>
       <Typography variant='h3' className={styles.adminHeader}>
-      {'Admin Panel for'}  {user?.firstName} {user?.lastName}
+      {'Admin Panel for'}  {user?.FirstName} {user?.LastName}
       </Typography>
       <Container
         className={styles.adminContainer}

@@ -46,9 +46,9 @@ const SingleProduct: React.FC = () => {
 
     useEffect(() => {
         const fetchCategory = async () => {
-          if (product && product.CategoryId) {
+          if (product && product.categoryId) {
             try {
-              const response = await dispatch(fetchCategoryById(product.CategoryId));
+              const response = await dispatch(fetchCategoryById(product.categoryId));
               const categoryData = response.payload as Category;
               setCategory(categoryData);
             } catch (error) {
@@ -103,7 +103,7 @@ const SingleProduct: React.FC = () => {
 
     return (
         <>
-            <Typography sx={{ textAlign: 'center', margin: '50px'}} variant="h4">{product.ProductName}</Typography>
+            <Typography sx={{ textAlign: 'center', margin: '50px'}} variant="h4">{product.productName}</Typography>
             <Container
                 sx={{
                     display: 'flex',
@@ -111,9 +111,9 @@ const SingleProduct: React.FC = () => {
                     marginBottom: '50px'
                 }}
             >
-                <ImageList sx={{  minWidth: 250 }} cols={product.Image.length} rowHeight={164}>
+                <ImageList sx={{  minWidth: 250 }} cols={product.image.length} rowHeight={164}>
 
-                    {product.Image.map((item: string, index: number ) => (
+                    {product.image.map((item: string, index: number ) => (
                             <img 
                                 key={index}
                                 className={styles.productImages}
@@ -139,7 +139,7 @@ const SingleProduct: React.FC = () => {
                     sx={{
                         marginBottom: '15px'
                     }}
-                    variant="h4">€{product.Price}
+                    variant="h4">€{product.price}
                 </Typography>
                 <Typography
                     sx={{
@@ -151,7 +151,7 @@ const SingleProduct: React.FC = () => {
                     sx={{
                         marginBottom: '15px'
                     }}
-                    variant="body1">{product.Description}
+                    variant="body1">{product.description}
                 </Typography>
 
                 <Box
@@ -168,7 +168,7 @@ const SingleProduct: React.FC = () => {
                     >
                             {'Back'}
                     </Button>
-                    { user?.role === 'admin' && <Button 
+                    { user?.Role === 'admin' && <Button 
                         onClick={() => setAdminFunctions(true)} 
                         className={styles.secondaryButton}
                     >
@@ -181,7 +181,7 @@ const SingleProduct: React.FC = () => {
                         {'Add to cart'}
                     </Button>
                 </Box>
-                { adminFunctions && user?.role === 'admin' ?
+                { adminFunctions && user?.Role === 'admin' ?
                         <Box className={styles.adminButtonsBox}>
                             <Header title="Admin functions"/>
                             <Box className={styles.adminButtons}>

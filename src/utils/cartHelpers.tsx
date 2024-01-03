@@ -23,8 +23,8 @@ const handleAddToCart = (
   } else {
     const cartItem: CartItem = {
       id: product.id,
-      name: product.ProductName,
-      price: product.Price,
+      name: product.productName,
+      price: product.price,
       quantity: 1,
     };
 

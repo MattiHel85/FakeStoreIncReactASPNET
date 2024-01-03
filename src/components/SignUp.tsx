@@ -8,18 +8,18 @@ import styles from '../styles/styles.module.css';
 
 const SignUp: React.FC = () => {
   const [userData, setUserData] = useState({    
-    role: 'Customer',
-    firstName:'',
-    lastName: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    phoneNumber: '',
-    addresses: [
+    Role: 'Customer',
+    FirstName:'',
+    LastName: '',
+    Email: '',
+    Password: '',
+    ConfirmPassword: '',
+    PhoneNumber: '',
+    Addresses: [
       {
-        houseNumber: 0,
-        street: '',
-        postCode: ''
+        HouseNumber: 0,
+        Street: '',
+        PostCode: ''
       }
     ],
   });
@@ -53,7 +53,7 @@ const SignUp: React.FC = () => {
     e.preventDefault();
 
     
-    if (userData.password !== userData.confirmPassword) {
+    if (userData.Password !== userData.ConfirmPassword) {
       setMessage('Passwords do not match. Please try again.');
       return;
     }
@@ -70,21 +70,21 @@ const SignUp: React.FC = () => {
         <TextField
           label={'First name'}
           name="FirstName"
-          value={userData.firstName}
+          value={userData.FirstName}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
           label={'Last name'}
           name="LastName"
-          value={userData.lastName}
+          value={userData.LastName}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
           label={'Email'}
           name="email"
-          value={userData.email}
+          value={userData.Email}
           onChange={handleInputChange}
           className={styles.textField}
         />
@@ -92,7 +92,7 @@ const SignUp: React.FC = () => {
           label={'Password'}
           type="password"
           name="password"
-          value={userData.password}
+          value={userData.Password}
           onChange={handleInputChange}
           className={styles.textField}
         />
@@ -100,7 +100,7 @@ const SignUp: React.FC = () => {
           label={'Confirm password'}
           type="password"
           name="confirmPassword"
-          value={userData.confirmPassword}
+          value={userData.ConfirmPassword}
           onChange={handleInputChange}
           className={styles.textField}
         />
@@ -114,21 +114,21 @@ const SignUp: React.FC = () => {
         <TextField
           label={'House Number'}
           name={`Addresses.HouseNumber`}
-          value={userData.addresses[0].houseNumber}
+          value={userData.Addresses[0].HouseNumber}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
           label={'Street'}
           name={`Addresses.Street`}
-          value={userData.addresses[0].street || ''}
+          value={userData.Addresses[0].Street || ''}
           onChange={handleInputChange}
           className={styles.textField}
         />
         <TextField
           label={'Post Code'}
           name={`Addresses.PostCode`}
-          value={userData.addresses[0].postCode}
+          value={userData.Addresses[0].PostCode}
           onChange={handleInputChange}
           className={styles.textField}
         />

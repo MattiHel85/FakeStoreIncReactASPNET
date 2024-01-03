@@ -33,7 +33,7 @@ const Users: React.FC = () => {
   }, [dispatch]);
 
   const filteredUsers = users.filter((user: User) =>
-    user.email.toLowerCase().includes(searchTerm.toLowerCase())
+    user.Email.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const indexOfLastUser = currentPage * usersPerPage;

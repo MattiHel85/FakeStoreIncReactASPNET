@@ -7,9 +7,9 @@ import styles from '../styles/styles.module.css';
 const ContactForm: React.FC = () => {
   const user = useSelector((state: RootState) => state.auth.user);
   const [formData, setFormData] = useState({
-    firstName: user ? user.firstName : '',
-    lastName: user ? user.lastName : '',
-    email: user ? user.email : '',
+    firstName: user ? user.FirstName : '',
+    lastName: user ? user.LastName : '',
+    email: user ? user.Email : '',
     message: '',
 });
   const [showMessage, setShowMessage] = useState(false)
@@ -26,9 +26,9 @@ const ContactForm: React.FC = () => {
     e.preventDefault();
 
     setFormData({
-      firstName: user ? user.firstName : '',
-      lastName: user ? user.lastName : '',
-      email: user ? user.email : '',
+      firstName: user ? user.FirstName : '',
+      lastName: user ? user.LastName : '',
+      email: user ? user.Email : '',
       message: '',
     });
 

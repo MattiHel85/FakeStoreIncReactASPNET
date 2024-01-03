@@ -13,12 +13,12 @@ const AddProduct: React.FC = () => {
   const dispatch: AppDispatch = useDispatch(); 
   const categories = useSelector((state: RootState) => state.categories.categories);
   const [productData, setProductData] = useState<AddProductData>({
-    ProductName:'',
-    Description: '',
-    Image: [],
-    Price: '',
-    StockQuantity: 0,
-    CategoryId: 0
+    productName:'',
+    description: '',
+    image: [],
+    price: '',
+    stockQuantity: 0,
+    categoryId: 0
   });
 
   useEffect(() => {
@@ -31,25 +31,25 @@ const AddProduct: React.FC = () => {
   };
 
   const handleCategoryChange = (event: any) => {
-    setProductData({ ...productData, CategoryId: event.target.value });
+    setProductData({ ...productData, categoryId: event.target.value });
   };
 
   const handleAddProduct = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(createProduct(productData));
     setProductData({
-      ProductName:'',
-      Description: '',
-      Image: [],
-      Price: '',
-      StockQuantity: 0,
-      CategoryId: 0
+      productName:'',
+      description: '',
+      image: [],
+      price: '',
+      stockQuantity: 0,
+      categoryId: 0
     });
   };
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const imageUrls = e.target.value.split(',');
-    setProductData({ ...productData, Image: imageUrls });
+    setProductData({ ...productData, image: imageUrls });
   };
 
   return (
@@ -59,14 +59,14 @@ const AddProduct: React.FC = () => {
           <TextField
             label={'Name'}
             name='title'
-            value={productData.ProductName}
+            value={productData.productName}
             onChange={handleInputChange}
             className={styles.textField}
           />
           <TextField
             label={'Description'}
             name='description'
-            value={productData.Description}
+            value={productData.description}
             onChange={handleInputChange}
             className={styles.textField}
           />
@@ -74,14 +74,14 @@ const AddProduct: React.FC = () => {
             label={'Price'}
             type='number'
             name='price'
-            value={productData.Price}
+            value={productData.price}
             onChange={handleInputChange}
             className={styles.textField}
           />
           <Select
             label={'Category'}
             name='categoryId'
-            value={productData.CategoryId}
+            value={productData.categoryId}
             onChange={handleCategoryChange}
             className={styles.textField}
           >
@@ -95,7 +95,7 @@ const AddProduct: React.FC = () => {
           <TextField
             label={'Image URLs (comma-separated)'}
             name='images'
-            value={productData.Image.join(',')} 
+            value={productData.image.join(',')} 
             onChange={handleImageChange}
             className={styles.textField}
           />

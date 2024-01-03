@@ -10,7 +10,7 @@ describe('userSlice', () => {
   });
 
   it('should handle fetchUsers.fulfilled', () => {
-    const mockUsers: User[] = [{ id: 1, firstName: 'User 1', lastName: "Simp", email: 'user1@example.com', phoneNumber: '1', password: 'password123', role: 'admin', addresses: [] }]
+    const mockUsers: User[] = [{ id: 1, FirstName: 'User 1', LastName: "Simp", Email: 'user1@example.com', PhoneNumber: '1', Password: 'password123', Role: 'admin', Addresses: [] }]
     const action = fetchUsers.fulfilled(mockUsers, '', undefined, '')
     const state = userSlice(initialState, action)
 
@@ -35,7 +35,7 @@ describe('userSlice', () => {
   });
 
   it('should handle registerUser.fulfilled', () => {
-    const mockUser: User = { id: 1, firstName: 'User 1', lastName: "Simp", email: 'user1@example.com', phoneNumber: '1', password: 'password123', role: 'admin', addresses: [] }
+    const mockUser: User = { id: 1, FirstName: 'User 1', LastName: "Simp", Email: 'user1@example.com', PhoneNumber: '1', Password: 'password123', Role: 'admin', Addresses: [] }
     const action = registerUser.fulfilled(mockUser, '', mockUser)
 
     const state = userSlice(initialState, action)
@@ -45,7 +45,7 @@ describe('userSlice', () => {
   });
 
   it('should handle registerUser.rejected', () => {
-    const mockUser: User = { id: 1, firstName: 'User 1', lastName: "Simp", email: 'user1@example.com', phoneNumber: '1', password: 'password123', role: 'admin', addresses: [] }
+    const mockUser: User = { id: 1, FirstName: 'User 1', LastName: "Simp", Email: 'user1@example.com', PhoneNumber: '1', Password: 'password123', Role: 'admin', Addresses: [] }
     const error = new Error('Registration Failed')
     const action = registerUser.rejected(error, '', mockUser)
     const state = userSlice(initialState, action)
@@ -61,8 +61,8 @@ describe('userSlice', () => {
   });
 
   it('should handle updateUser.fulfilled', () => {
-    const mockUser: User = { id: 1, firstName: 'User 1', lastName: "Simp", email: 'user1@example.com', phoneNumber: '1', password: 'password123', role: 'admin', addresses: [] }
-    const updatedUserData: User = {id: 1, firstName: 'Upated User 1', lastName: "Simp", email: 'user1@example.com', phoneNumber: '1', password: 'password123', role: 'admin', addresses: [] }
+    const mockUser: User = { id: 1, FirstName: 'User 1', LastName: "Simp", Email: 'user1@example.com', PhoneNumber: '1', Password: 'password123', Role: 'admin', Addresses: [] }
+    const updatedUserData: User = { id: 1, FirstName: 'Updated User 1', LastName: "Simp", Email: 'user1@example.com', PhoneNumber: '1', Password: 'password123', Role: 'admin', Addresses: [] }
 
     const action = updateUser.fulfilled(updatedUserData, '', mockUser)
 
@@ -73,7 +73,7 @@ describe('userSlice', () => {
   });
 
   it('should handle updateUser.rejected', () => {
-    const mockUser: User = { id: 1, firstName: 'User 1', lastName: "Simp", email: 'user1@example.com', phoneNumber: '1', password: 'password123', role: 'admin', addresses: [] }
+    const mockUser: User = { id: 1, FirstName: 'User 1', LastName: "Simp", Email: 'user1@example.com', PhoneNumber: '1', Password: 'password123', Role: 'admin', Addresses: [] }
     const error = new Error('Update Failed')
 
     const action = updateUser.rejected(error, '', mockUser)

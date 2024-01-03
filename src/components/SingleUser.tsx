@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { User } from "../types/User";
 import { RootState } from "../redux/slices/rootSlice";
 import UpdateUser from "./UpdateUser";
 import { Button, Container, Box } from "@mui/material";
@@ -22,8 +21,6 @@ const SingleUser: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // https://fakestoreinc.azurewebsites.net/api/v1/users/08c1cbd7-3956-4be9-8855-15fd638fe5ec
-                console.log(id);
                 const res = await fetch(`https://fakestoreinc.azurewebsites.net/api/v1/users/${id}`);
                 if (!res.ok) {
                     console.error(`Danger, Will Robinson, there is an error! ${res.status}`);
@@ -58,7 +55,7 @@ const SingleUser: React.FC = () => {
                 <Box className={styles.buttonBox}>
                     <Button className={styles.primaryButton} onClick={handleGoBack}>{'Back'}</Button>
                     { 
-                        signedInUser?.role === 'admin' || user?.id === signedInUser?.id ?
+                        signedInUser?.Role === 'admin' || user?.id === signedInUser?.id ?
                             <Button className={styles.updateButton} onClick={toggleUpdateUserForm}>
                                 {/* {openUserUpdateForm ? 'Done' : 'Update User'} */}
                                 {openUserUpdateForm && 'Done'}

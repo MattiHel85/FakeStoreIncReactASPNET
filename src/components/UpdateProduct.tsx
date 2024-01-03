@@ -14,24 +14,24 @@ const UpdateProduct: React.FC<updateProductProps> = ({ product }) => {
   const categories = useSelector((state: RootState) => state.categories.categories);
   const [productData, setProductData] = useState<ProductData>({
     id: 0,
-    ProductName:'',
-    Description: '',
-    Image: [],
-    Price: '',
-    StockQuantity: 0,
-    CategoryId: 0
+    productName:'',
+    description: '',
+    image: [],
+    price: '',
+    stockQuantity: 0,
+    categoryId: 0
   });
 
   useEffect(() => {
     // Set initial values to the product data
     setProductData({
         id: product.id,
-        ProductName: product.ProductName,
-        Description: product.Description,
-        Price: product.Price,
-        Image: product.Image, 
-        StockQuantity: product.StockQuantity,
-        CategoryId: product.CategoryId, 
+        productName: product.productName,
+        description: product.description,
+        price: product.price,
+        image: product.image, 
+        stockQuantity: product.stockQuantity,
+        categoryId: product.categoryId, 
     });
 
     dispatch(fetchCategories());
@@ -43,7 +43,7 @@ const UpdateProduct: React.FC<updateProductProps> = ({ product }) => {
   };
 
   const handleCategoryChange = (event: any) => {
-    setProductData({ ...productData, CategoryId: event.target.value });
+    setProductData({ ...productData, categoryId: event.target.value });
   };
 
   
@@ -53,18 +53,12 @@ const UpdateProduct: React.FC<updateProductProps> = ({ product }) => {
 
     const updatedProduct = {
         id: product.id,
-        ProductName: product.ProductName,
-        Description: product.Description,
-        Price: product.Price,
-        Image: product.Image, 
-        StockQuantity: product.StockQuantity,
-        CategoryId: product.CategoryId, 
-        // id: productData.id, 
-        // title: productData.title,
-        // description: productData.description,
-        // price: productData.price,
-        // images: productData.images,
-        // categoryId: productData.categoryId,
+        productName: product.productName,
+        description: product.description,
+        price: product.price,
+        image: product.image, 
+        stockQuantity: product.stockQuantity,
+        categoryId: product.categoryId
       };
 
     dispatch(updateProduct(updatedProduct));
@@ -72,7 +66,7 @@ const UpdateProduct: React.FC<updateProductProps> = ({ product }) => {
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const imageUrls = e.target.value.split(',');
-    setProductData({ ...productData, Image: imageUrls });
+    setProductData({ ...productData, image: imageUrls });
   };
 
   return (
@@ -83,14 +77,14 @@ const UpdateProduct: React.FC<updateProductProps> = ({ product }) => {
       <TextField
         label={'Name'}
         name='title'
-        value={productData.ProductName}
+        value={productData.productName}
         onChange={handleInputChange}
         className={styles.textField}
       />
       <TextField
         label={'Description'}
         name='description'
-        value={productData.Description}
+        value={productData.description}
         onChange={handleInputChange}
         className={styles.textField}
       />
@@ -98,14 +92,14 @@ const UpdateProduct: React.FC<updateProductProps> = ({ product }) => {
         label={'Price'}
         type='number'
         name='price'
-        value={productData.Price}
+        value={productData.price}
         onChange={handleInputChange}
         className={styles.textField}
       />
       <Select
         label={'Category'}
         name='categoryId'
-        value={productData.CategoryId}
+        value={productData.categoryId}
         onChange={handleCategoryChange}
         className={styles.textField}
       >
@@ -119,7 +113,7 @@ const UpdateProduct: React.FC<updateProductProps> = ({ product }) => {
       <TextField
         label={'Image URLs (comma-separated)'}
         name='images'
-        value={productData.Image.join(',')} // Join the array into a comma-separated string for the input value
+        value={productData.image.join(',')} // Join the array into a comma-separated string for the input value
         onChange={handleImageChange}
         className={styles.textField}
       />
