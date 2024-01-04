@@ -10,7 +10,7 @@
 
 I created the FakeStore Inc React app using React, Redux, TypeScript, with styling done using SASS and MUI components.
 
-1. I built the following API using ASP.NET CORE, Entity Framework Core, and PostgreSQL and deployed it in [Azure](https://fakestoreinc.azurewebsites.net/api/v1/). Here is the GitHub [repo](https://github.com/MattiHel/fs16_CSharp-FullStack), which is a private repo for now but I will be moving into a public repo soon enough.
+1. I built the following API using ASP.NET CORE, Entity Framework Core, and PostgreSQL and deployed it in [Azure](https://fakestoreinc.azurewebsites.net/api/v1/). Here is the GitHub [repo](https://github.com/MattiHel85/fs16_CSharp-FullStack), which is a private repo for now but I will be moving into a public repo soon enough.
 2. Pages created (Landing page, Products, Product, Users, User, Sign Up, Sign In, Admin, AccessDenied, and AlreadySignedIn)
 3. I created a Redux store for the following features:
   - product reducer: get all products, find a single product, Add Product, Edit Product, Delete Product
